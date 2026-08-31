@@ -1,0 +1,4 @@
+import type { Metadata } from 'next'; import { LegalPage } from '@/components/legal-page';
+export const metadata:Metadata={title:'개인정보처리방침',description:'틱톡커머스랩 개인정보처리방침',alternates:{canonical:'/privacy'}};
+const sections=[{title:'1. 수집하는 개인정보',body:'문의 및 신청 과정에서 이름, 연락처, 이메일, 회사·상품·활동 관련 정보를 수집할 수 있습니다. 현재 1차 버전의 폼은 저장 시스템과 연결되지 않아 입력 내용이 서버에 저장되지 않습니다.'},{title:'2. 이용 목적',body:'특강 안내, 상담 회신, 셀러 교육 및 프로젝트 안내, 서비스 개선을 위해 필요한 범위에서 이용합니다.'},{title:'3. 보유 및 파기',body:'실제 수집 기능이 연결될 때에는 관련 법령과 고지된 기간에 따라 보유하고, 목적 달성 후 안전하게 파기합니다.'},{title:'4. 제3자 제공 및 처리위탁',body:'제3자 제공 또는 외부 처리 도구 사용 시 대상, 목적, 항목, 기간을 사전에 명확히 고지합니다.'},{title:'5. 정보주체의 권리',body:'이용자는 개인정보의 열람, 정정, 삭제, 처리정지를 요청할 수 있습니다. 실제 담당자 연락처는 운영 개시 전 업데이트합니다.'}];
+export default function Page(){return <LegalPage title="개인정보처리방침" updated="2026년 8월 31일" sections={sections}/>}

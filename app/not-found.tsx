@@ -1,0 +1,2 @@
+import Link from 'next/link'; import { ArrowLeft } from 'lucide-react'; import { SiteShell } from '@/components/site-shell';
+export default function NotFound(){return <SiteShell><section className="mx-auto max-w-[900px] px-5 py-28 text-center"><p className="text-7xl font-black text-[#25f4ee]">404</p><h1 className="mt-6 text-3xl font-black">페이지를 찾을 수 없습니다.</h1><p className="mt-4 text-white/45">주소가 바뀌었거나 아직 준비 중인 페이지입니다.</p><Link href="/" className="cta-primary mt-8"><ArrowLeft className="size-4"/>홈으로 돌아가기</Link></section></SiteShell>}

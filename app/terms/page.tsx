@@ -1,0 +1,4 @@
+import type { Metadata } from 'next'; import { LegalPage } from '@/components/legal-page';
+export const metadata:Metadata={title:'이용약관',description:'틱톡커머스랩 이용약관',alternates:{canonical:'/terms'}};
+const sections=[{title:'1. 목적',body:'본 약관은 틱톡커머스랩이 제공하는 정보, 교육, 상담 및 대행 서비스 이용에 관한 기본 사항을 정합니다.'},{title:'2. 독립 플랫폼 고지',body:'틱톡커머스랩은 TikTok 및 ByteDance의 공식 운영 사이트, 공식 파트너 또는 인증기관이 아닙니다. 플랫폼 정책과 출시 일정은 공식 안내를 최종 기준으로 확인해야 합니다.'},{title:'3. 정보의 한계',body:'사이트의 콘텐츠는 일반적인 정보와 교육 목적으로 제공됩니다. 정책, 수수료, 출시 일정 등은 변경될 수 있으며 개별 사업의 법률·세무 자문을 대신하지 않습니다.'},{title:'4. 서비스 계약',body:'교육·컨설팅·대행의 범위, 가격, 일정, 책임은 별도 계약 또는 제안서에서 정합니다. 확정되지 않은 가격은 상담 후 제안합니다.'},{title:'5. 지식재산권',body:'사이트의 독자적인 콘텐츠와 디자인은 관련 법령의 보호를 받습니다. 제3자 상표와 자료의 권리는 각 권리자에게 있습니다.'}];
+export default function Page(){return <LegalPage title="이용약관" updated="2026년 8월 31일" sections={sections}/>}
