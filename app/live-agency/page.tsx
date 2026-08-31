@@ -85,6 +85,7 @@ export default function LiveAgencyPage() {
             <div className="mt-8 flex flex-wrap gap-3">
               <Link href="#consultation-form" className="cta-primary">우리 상품 라이브 가능성 진단받기 <ArrowRight className="size-4" aria-hidden="true" /></Link>
               <Link href="#services" className="cta-secondary">서비스 구성 살펴보기 <ArrowRight className="size-4" aria-hidden="true" /></Link>
+              <Link href="/tiktok-shop-korea" className="cta-secondary">틱톡샵 한국 가이드</Link>
             </div>
             <div className="mt-8 grid max-w-[680px] gap-3 sm:grid-cols-3">
               {agencyHeroStats.map(({ icon: Icon, label, value }) => <div key={label} className="rounded-xl border border-white/9 bg-white/[.035] p-4"><Icon className="size-4 text-[#25f4ee]" aria-hidden="true" /><span className="mt-3 block text-[11px] text-white/40">{label}</span><strong className="mt-1 block text-sm">{value}</strong></div>)}
