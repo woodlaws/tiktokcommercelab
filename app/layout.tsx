@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://tiktok-commerce-lab.geosangbruce.chatgpt.site'),
+  metadataBase: new URL('https://tiktokcommercelab.vercel.app'),
   title: { default:'틱톡커머스랩 | 라이브커머스 교육·컨설팅·운영', template:'%s | 틱톡커머스랩' },
   description: '틱톡샵, 라이브, 숏폼, 광고, 셀러 육성을 연결하는 독립 틱톡커머스 전문 플랫폼입니다.',
   alternates: { canonical:'/' },
