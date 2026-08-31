@@ -53,6 +53,13 @@
 
 ::selection { background:rgba(37,244,238,.3); color:#fff; }
 .hero-grid { background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px); background-size:54px 54px; mask-image:linear-gradient(to bottom,black,transparent 92%); }
+.hero-title { max-width:760px; font-size:34px; line-height:1.08; letter-spacing:-.045em; font-weight:900; word-break:keep-all; overflow-wrap:normal; }
+.hero-title>span { display:block; white-space:nowrap; }
+@media (min-width:480px) { .hero-title { font-size:40px; } }
+@media (min-width:768px) { .hero-title { font-size:46px; } }
+@media (min-width:1024px) { .hero-title { font-size:54px; } }
+@media (min-width:1280px) { .hero-title { font-size:64px; } }
+@media (min-width:1440px) { .hero-title { font-size:72px; } }
 .cta-primary,.cta-secondary { display:inline-flex; min-height:52px; align-items:center; justify-content:center; gap:.65rem; border-radius:.65rem; padding:0 1.45rem; font-size:.92rem; font-weight:800; transition:.2s ease; }
 .cta-primary { background:#fe174f; color:#fff; box-shadow:0 0 32px rgba(254,23,79,.2); }
 .cta-primary:hover { transform:translateY(-2px); background:#ff3767; }
