@@ -10,6 +10,7 @@ export const navigation = [
   { label:'틱톡샵 한국', href:'/tiktok-shop-korea' }, { label:'커머스 인사이트', href:'/insights' },
   { label:'셀러 아카데미', href:'/seller-academy' }, { label:'브랜드 성장', href:'/brand-growth' },
   { label:'라이브 에이전시', href:'/live-agency' }, { label:'성공사례', href:'/cases' },
+  { label:'문의·상담', href:'/contact' },
 ];
 
 export const metrics = [

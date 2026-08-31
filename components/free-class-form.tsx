@@ -23,6 +23,7 @@ export function FreeClassForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const started = useRef(false);
+  const startedAt = useRef(Date.now());
   const submissionLock = useRef(false);
 
   useEffect(() => {
@@ -84,8 +85,9 @@ export function FreeClassForm() {
       utmSource: params.get('utm_source') ?? undefined,
       utmMedium: params.get('utm_medium') ?? undefined,
       utmCampaign: params.get('utm_campaign') ?? undefined,
-      referrer: document.referrer || undefined,
+      referrer: safeReferrer(document.referrer),
       createdAt: new Date().toISOString(),
+      startedAt: startedAt.current,
     };
 
     try {
@@ -183,6 +185,8 @@ function optionalValue(data: FormData, name: string) {
   const value = String(data.get(name) ?? '').trim();
   return value || undefined;
 }
+
+function safeReferrer(value: string) { if (!value) return undefined; try { const url = new URL(value); return url.origin === window.location.origin ? url.pathname : url.origin; } catch { return undefined; } }
 
 function Field({ id, label, error, required, optional, children }: { id: string; label: string; error?: string; required?: boolean; optional?: boolean; children: React.ReactNode }) {
   return <label htmlFor={`free-class-${id}`}><span className="mb-2 flex items-center gap-1 text-sm font-bold">{label}{required ? <em className="not-italic text-[#fe2c55]">*</em> : null}{optional ? <small className="ml-1 font-medium text-white/28">선택</small> : null}</span>{children}{error ? <span id={`free-class-${id}-error`} className="mt-2 block text-xs font-bold text-[#ff6f91]">{error}</span> : null}</label>;

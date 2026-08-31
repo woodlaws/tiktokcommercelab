@@ -1,27 +1,35 @@
 'use client';
 
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import Link from 'next/link';
-import { AlertCircle, Send } from 'lucide-react';
+import { AlertCircle, LoaderCircle, Send } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { NativeSelect, NativeSelectOption } from '@/components/ui/native-select';
 import { Textarea } from '@/components/ui/textarea';
+import { submitLead } from '@/lib/lead-submission';
 
 const services = ['상품 진단', '1회 라이브', '월 운영 대행', '틱톡 진출', '교육 문의', '기타'];
 
 export function LiveAgencyForm() {
   const [agree, setAgree] = useState(false);
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState<{ tone: 'error' | 'success'; text: string } | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const startedAt = useRef(Date.now());
 
-  function submit(event: React.SyntheticEvent<HTMLFormElement>) {
+  async function submit(event: React.SyntheticEvent<HTMLFormElement>) {
     event.preventDefault();
     const form = event.currentTarget;
     if (!form.checkValidity() || !agree) {
-      setMessage('필수 입력 항목과 개인정보 수집·이용 동의를 확인해 주세요.');
+      setMessage({ tone: 'error', text: '필수 입력 항목과 개인정보 수집·이용 동의를 확인해 주세요.' });
       form.reportValidity();
       return;
     }
-    setMessage('현재 상담 폼은 저장 시스템 연결 전입니다. 입력 내용은 전송되거나 저장되지 않았습니다. 연결 완료 후 실제 접수가 활성화됩니다.');
+    const data = new FormData(form); setIsSubmitting(true);
+    const params = new URLSearchParams(window.location.search);
+    const result = await submitLead({ type: 'live-agency', name: String(data.get('name') ?? '').trim(), phone: String(data.get('phone') ?? '').trim(), email: String(data.get('email') ?? '').trim(), organization: String(data.get('company') ?? '').trim(), product: String(data.get('product') ?? '').trim(), currentChannel: String(data.get('salesChannel') ?? '').trim(), goal: String(data.get('message') ?? '').trim(), privacyConsent: agree, marketingConsent: false, sourcePath: '/live-agency', referrer: safeReferrer(document.referrer), campaign: { source: params.get('utm_source')?.slice(0, 100), medium: params.get('utm_medium')?.slice(0, 100), campaign: params.get('utm_campaign')?.slice(0, 100) }, context: { service: String(data.get('service') ?? '') }, startedAt: startedAt.current });
+    setIsSubmitting(false);
+    if (result.ok) { form.reset(); setAgree(false); setMessage({ tone: 'success', text: '상담 문의가 접수되었습니다. 담당자가 확인 후 연락드리겠습니다.' }); }
+    else setMessage({ tone: 'error', text: result.message });
   }
 
   const fieldClass = 'h-12 border-white/12 bg-black/25 px-3 text-sm focus-visible:border-[#25f4ee] focus-visible:ring-[#25f4ee]/20';
@@ -59,13 +67,15 @@ export function LiveAgencyForm() {
             <input type="checkbox" checked={agree} onChange={event => setAgree(event.target.checked)} className="mt-1 size-5 shrink-0 accent-[#fe2c55]" required />
             <span>개인정보 수집·이용 안내를 확인했으며 이에 동의합니다. <Link href="/privacy" className="ml-1 underline underline-offset-4">개인정보처리방침</Link></span>
           </label>
-          {message && <output aria-live="polite" className="mt-5 block rounded-xl border border-[#25f4ee]/22 bg-[#25f4ee]/6 p-4 text-sm leading-6 text-[#8ffefa]">{message}</output>}
-          <button type="submit" className="mt-6 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-lg bg-[#fe174f] px-5 text-base font-black transition hover:bg-[#ff3767] focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-[#25f4ee]/50">상담 내용 확인 <Send className="size-4" aria-hidden="true" /></button>
+          {message && <output role={message.tone === 'error' ? 'alert' : 'status'} aria-live="polite" className={`mt-5 block rounded-xl border p-4 text-sm leading-6 ${message.tone === 'error' ? 'border-[#fe2c55]/28 bg-[#fe2c55]/8 text-[#ff9cb2]' : 'border-[#25f4ee]/22 bg-[#25f4ee]/6 text-[#8ffefa]'}`}>{message.text}</output>}
+          <button type="submit" disabled={isSubmitting} className="mt-6 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-lg bg-[#fe174f] px-5 text-base font-black transition hover:bg-[#ff3767] focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-[#25f4ee]/50 disabled:opacity-55">{isSubmitting ? <><LoaderCircle className="size-4 animate-spin" aria-hidden="true" /> 서버 확인 중</> : <>상담 내용 확인 <Send className="size-4" aria-hidden="true" /></>}</button>
         </form>
       </div>
     </section>
   );
 }
+
+function safeReferrer(value: string) { if (!value) return undefined; try { const url = new URL(value); return url.origin === window.location.origin ? url.pathname : url.origin; } catch { return undefined; } }
 
 function Field({ label, required, wide, children }: { label: string; required?: boolean; wide?: boolean; children: React.ReactNode }) {
   return <label className={wide ? 'sm:col-span-2' : ''}><span className="mb-2 block text-sm font-bold">{label}{required && <em className="ml-1 not-italic text-[#fe2c55]">*</em>}</span>{children}</label>;

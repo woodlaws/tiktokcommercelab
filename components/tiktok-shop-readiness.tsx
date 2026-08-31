@@ -49,7 +49,7 @@ export function TikTokShopReadiness() {
       <h3 className="mt-5 text-xl font-black">{result.label}</h3>
       <p className="mt-3 break-keep text-sm leading-6 text-white/52">{result.description}</p>
       <p className="mt-4 flex gap-2 text-xs leading-5 text-white/35"><CheckCircle2 className="mt-0.5 size-3.5 shrink-0 text-[#25f4ee]" />이 결과는 참고용이며 입점 승인이나 사업 성과를 보장하는 진단이 아닙니다.</p>
-      <Link href={`/contact/brand?service=${encodeURIComponent('틱톡샵 준비')}&readiness=${encodeURIComponent(result.label)}&checked=${checked.length}`} className="cta-primary mt-6 w-full">내 준비 결과로 상담 신청 <ArrowRight className="size-4" /></Link>
+      <Link href="/contact?type=tiktok-shop" className="cta-primary mt-6 w-full">내 준비 결과로 상담 신청 <ArrowRight className="size-4" /></Link>
       <button type="button" onClick={reset} disabled={!checked.length} className="mt-3 inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-lg text-sm font-bold text-white/42 transition hover:bg-white/5 hover:text-white disabled:cursor-not-allowed disabled:opacity-30"><RotateCcw className="size-4" />체크 초기화</button>
     </aside>
   </div>;

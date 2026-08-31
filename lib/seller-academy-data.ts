@@ -99,4 +99,4 @@ export const academyFaqs = [
   { question: '현재 사전등록 정보가 실제로 저장되나요?', answer: '현재 온라인 상담 폼은 저장 시스템 연결 전 상태이며, 입력 내용이 저장되지 않는다는 안내를 폼에서 제공합니다. 저장 시스템이 연결되기 전에는 완료 메시지를 표시하지 않습니다.' },
 ];
 
-export const academyApplicationHref = '/contact/academy?service=셀러+아카데미+사전등록';
+export const academyApplicationHref = '/contact?type=education';

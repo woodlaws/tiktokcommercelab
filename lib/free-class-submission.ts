@@ -17,18 +17,16 @@ export type FreeClassApplication = {
   utmCampaign?: string;
   referrer?: string;
   createdAt: string;
+  startedAt: number;
 };
 
 export type FreeClassSubmissionResult =
   | { ok: true; applicationId: string }
   | { ok: false; reason: 'not_configured' | 'request_failed'; message: string };
 
-export async function submitFreeClassApplication(_application: FreeClassApplication): Promise<FreeClassSubmissionResult> {
-  // Supabase, Google Sheets, Notion 또는 서버 웹훅 연결 시 이 함수 내부만 교체합니다.
-  // 현재는 저장 시스템이 없으므로 성공 상태나 신청 번호를 생성하지 않습니다.
-  return {
-    ok: false,
-    reason: 'not_configured',
-    message: '현재 신청 저장 시스템이 연결되지 않아 입력 내용이 전송되거나 저장되지 않았습니다. 운영 연결 후 실제 접수가 활성화됩니다.',
-  };
+export async function submitFreeClassApplication(application: FreeClassApplication): Promise<FreeClassSubmissionResult> {
+  const { submitLead } = await import('@/lib/lead-submission');
+  const result = await submitLead({ type: 'free-class', name: application.name, phone: application.phone, email: application.email, organization: application.company, role: application.userType, product: application.product, currentChannel: application.salesChannels, goal: application.challenge || `관심 분야: ${application.interests.join(', ')}`, privacyConsent: application.privacyConsent, marketingConsent: application.marketingConsent, sourcePath: '/free-class', referrer: application.referrer, campaign: { source: application.utmSource, medium: application.utmMedium, campaign: application.utmCampaign }, context: { interests: application.interests, tiktokStatus: application.tiktokStatus ?? '', consultationType: application.consultationType ?? '' }, startedAt: application.startedAt });
+  if (result.ok) return { ok: true, applicationId: result.leadId };
+  return { ok: false, reason: result.reason === 'not_configured' ? 'not_configured' : 'request_failed', message: result.message };
 }
