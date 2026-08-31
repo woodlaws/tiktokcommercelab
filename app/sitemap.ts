@@ -3,7 +3,7 @@ import { publishedCases } from '@/lib/cases-data';
 import { pageContent, posts, site } from '@/lib/site-data';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const staticPaths = ['', 'insights', 'seminar', 'live-agency', 'cases', 'contact/brand', 'contact/seller', 'privacy', 'terms', ...Object.keys(pageContent)];
+  const staticPaths = ['', 'insights', 'free-class', 'live-agency', 'cases', 'contact/brand', 'contact/seller', 'privacy', 'terms', ...Object.keys(pageContent)];
 
   return [
     ...staticPaths.map((path) => ({
