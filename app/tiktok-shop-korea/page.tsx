@@ -38,7 +38,7 @@ export default function TikTokShopKoreaPage() {
           <p className="inline-flex min-h-8 items-center gap-2 rounded-full border border-[#25f4ee]/30 bg-[#25f4ee]/6 px-3 text-xs font-black tracking-[.12em] text-[#70fffb]"><Radio className="size-3.5" aria-hidden="true" /> TIKTOK SHOP KOREA GUIDE</p>
           <h1 className="mt-7 max-w-[800px] text-[clamp(2.45rem,4.1vw,4.1rem)] font-black leading-[1.08] tracking-[-.045em]"><span className="block break-keep">틱톡샵 한국,</span><span className="block break-keep">무엇이 달라지고 무엇을 준비해야 할까</span></h1>
           <p className="mt-6 max-w-[720px] break-keep text-lg leading-8 text-white/58">틱톡샵의 구조부터 국내 진행 현황, 브랜드·셀러·크리에이터의 준비 전략까지 한 페이지에서 확인하세요.</p>
-          <div className="mt-8 flex flex-wrap gap-3"><Link href="/free-class" className="cta-primary">무료특강 신청하기 <ArrowRight className="size-4" /></Link><Link href="#readiness-check" className="cta-secondary">우리 브랜드 준비 수준 진단하기</Link></div>
+          <div className="mt-8 flex flex-wrap gap-3"><Link href="/free-class" className="cta-primary">무료특강 신청하기 <ArrowRight className="size-4" /></Link><Link href="/seller-academy" className="cta-secondary">셀러 아카데미 사전등록</Link><Link href="#readiness-check" className="cta-secondary">우리 브랜드 준비 수준 진단하기</Link></div>
           <a href="#official-sources" className="mt-5 inline-flex min-h-11 items-center gap-2 text-sm font-bold text-[#25f4ee]">공식 출처 확인 <ExternalLink className="size-4" /></a>
         </div>
         <HeroStatusVisual />
@@ -84,7 +84,7 @@ export default function TikTokShopKoreaPage() {
       <Link href="/insights" className="cta-secondary mt-8">틱톡샵 전체 콘텐츠 보기 <ArrowRight className="size-4" /></Link>
     </PageSection>
 
-    <section className="border-y border-white/8 bg-[#090a0d]"><div className="mx-auto grid max-w-[1200px] gap-6 px-5 py-20 lg:grid-cols-2 lg:px-10 lg:py-24"><ConversionCard eyebrow="FREE LIVE CLASS" title="정보만 보는 것보다, 내 사업에 적용해보세요" text="무료특강에서 브랜드·셀러·크리에이터별 틱톡커머스 준비 방법과 실행 순서를 알려드립니다." href="/free-class" cta="틱톡커머스 무료특강 신청" /><ConversionCard eyebrow="CONSULTATION" title="우리 상품은 틱톡샵에 적합할까요?" text="상품 진단, 틱톡샵 준비, 라이브커머스, 크리에이터 협업, 콘텐츠 운영과 교육 문의를 함께 점검합니다." href="/contact/brand?service=틱톡샵+준비" cta="브랜드·셀러 상담 신청" secondaryHref="/live-agency" secondaryCta="라이브 에이전시 보기" /></div></section>
+    <section className="border-y border-white/8 bg-[#090a0d]"><div className="mx-auto grid max-w-[1200px] gap-6 px-5 py-20 lg:grid-cols-2 lg:px-10 lg:py-24"><ConversionCard eyebrow="FREE LIVE CLASS" title="정보만 보는 것보다, 내 사업에 적용해보세요" text="무료특강에서 틱톡커머스 준비 순서를 이해하고, 셀러 아카데미에서 직접 실행할 결과물을 만듭니다." href="/free-class" cta="틱톡커머스 무료특강 신청" secondaryHref="/seller-academy" secondaryCta="셀러 아카데미 보기" /><ConversionCard eyebrow="CONSULTATION" title="우리 상품은 틱톡샵에 적합할까요?" text="상품 진단, 틱톡샵 준비, 라이브커머스, 크리에이터 협업, 콘텐츠 운영과 교육 문의를 함께 점검합니다." href="/contact/brand?service=틱톡샵+준비" cta="브랜드·셀러 상담 신청" secondaryHref="/live-agency" secondaryCta="라이브 에이전시 보기" /></div></section>
 
     <PageSection eyebrow="FAQ" title="틱톡샵 한국, 자주 묻는 질문"><Accordion className="overflow-hidden rounded-2xl border border-white/10 bg-white/[.03]">{koreaGuideFaqs.map((item, index) => <AccordionItem key={item.q} value={`faq-${index}`} className="border-white/10 px-5 sm:px-7"><AccordionTrigger className="min-h-16 py-5 text-left text-base font-black hover:no-underline">{item.q}</AccordionTrigger><AccordionContent className="pb-6 pr-8 text-sm leading-7 text-white/52">{item.a}</AccordionContent></AccordionItem>)}</Accordion></PageSection>
 

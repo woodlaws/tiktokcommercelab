@@ -3,7 +3,7 @@ import { publishedCases } from '@/lib/cases-data';
 import { pageContent, posts, site } from '@/lib/site-data';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const staticPaths = ['', 'insights', 'tiktok-shop-korea', 'free-class', 'live-agency', 'cases', 'contact/brand', 'contact/seller', 'privacy', 'terms', ...Object.keys(pageContent)];
+  const staticPaths = ['', 'insights', 'tiktok-shop-korea', 'seller-academy', 'free-class', 'live-agency', 'cases', 'contact/academy', 'contact/brand', 'contact/seller', 'privacy', 'terms', ...Object.keys(pageContent)];
 
   return [
     ...staticPaths.map((path) => ({

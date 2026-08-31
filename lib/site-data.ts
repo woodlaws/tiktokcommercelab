@@ -8,7 +8,7 @@ export const site = {
 
 export const navigation = [
   { label:'틱톡샵 한국', href:'/tiktok-shop-korea' }, { label:'커머스 인사이트', href:'/insights' },
-  { label:'셀러 아카데미', href:'/academy' }, { label:'브랜드 성장', href:'/brand-growth' },
+  { label:'셀러 아카데미', href:'/seller-academy' }, { label:'브랜드 성장', href:'/brand-growth' },
   { label:'라이브 에이전시', href:'/live-agency' }, { label:'성공사례', href:'/cases' },
 ];
 
@@ -22,7 +22,7 @@ export const services = [
   { title:'틱톡샵 진출 컨설팅', text:'상품 적합성, 가격과 구성, 입점 준비를 하나의 실행 로드맵으로 설계합니다.', href:'/brand-growth' },
   { title:'라이브커머스 운영대행', text:'방송 기획과 셀러 매칭부터 판매관리·성과분석까지 운영합니다.', href:'/live-agency' },
   { title:'숏폼·광고 콘텐츠 제작', text:'발견을 만드는 숏폼과 전환을 높이는 광고 소재를 함께 설계합니다.', href:'/brand-growth' },
-  { title:'라이브 셀러 교육', text:'상품 분석, 방송 대본, 고객 참여, 전환까지 실전 중심으로 훈련합니다.', href:'/academy' },
+  { title:'라이브 셀러 교육', text:'상품 분석, 방송 대본, 고객 참여, 전환까지 실전 중심으로 훈련합니다.', href:'/seller-academy' },
 ];
 
 export const experts = [
@@ -47,7 +47,6 @@ export const posts: Post[] = [
 ];
 
 export const pageContent: Record<string,{title:string;eyebrow:string;description:string;sections:{title:string;items:string[]}[];cta:string;schema:'Service'|'Course'|'Organization'}> = {
-  academy:{ title:'실전 라이브 셀러 아카데미', eyebrow:'SELLER ACADEMY', description:'방송을 켜는 방법을 넘어, 고객과 소통하고 실제 구매 전환을 만드는 운영 역량을 훈련합니다.', cta:'셀러 사전등록하기', schema:'Course', sections:[{title:'이런 분을 위한 과정입니다',items:['라이브 방송으로 새로운 수익을 만들고 싶은 예비 셀러','숏폼은 만들지만 판매 전환이 어려운 크리에이터','상품 분석과 방송 진행을 체계적으로 배우고 싶은 실무자']},{title:'실전 커리큘럼',items:['틱톡커머스 입문과 정책 이해','판매상품 분석과 방송 대본 작성','고객 참여·질문·전환 설계','숏폼 제작과 라이브 유입','계정·정책 관리와 실전 판매방송']},{title:'수료 후 지원',items:['방송 피드백과 개선 체크리스트','우수 셀러의 프로젝트 참여 기회','지속 학습을 위한 운영 자료']} ]},
   'brand-growth':{ title:'브랜드의 틱톡커머스 성장을 설계합니다', eyebrow:'BRAND GROWTH', description:'입점 준비부터 숏폼, 라이브, 크리에이터, 광고, 데이터 분석까지 브랜드에 맞는 실행 순서를 제안합니다.', cta:'브랜드 상담 신청하기', schema:'Service', sections:[{title:'진출 전략',items:['상품 적합성과 목표 고객 분석','채널 가격·구성·마진 설계','입점·물류·고객응대 준비']},{title:'콘텐츠와 판매',items:['숏폼 콘텐츠 기획 및 제작','라이브 방송 구성과 운영','크리에이터 협업과 광고 확장']},{title:'성과 관리',items:['유입·체류·클릭·구매 데이터 분석','방송과 소재 개선','재구매·CRM 운영 제안','가격은 상담 후 범위에 맞춰 제안합니다.']} ]},
   experts:{ title:'현장 경험과 마케팅 시스템이 만났습니다', eyebrow:'EXPERTS', description:'라이브 판매를 아는 전문가와 교육·마케팅 시스템을 설계하는 전문가가 함께합니다.', cta:'전문가와 상담하기', schema:'Organization', sections:[{title:'백운덕 대표',items:['월 10억 매출을 만드는 현직 라이브셀러','1년 이상 라이브커머스 실전 운영','상품 구성·진행·현장 전환 노하우']},{title:'임헌수 대표',items:['거상스쿨·거상마케팅센터 대표','마케팅 교육·대행·AI 콘텐츠 시스템','홈페이지·AEO·GEO 전략 설계']} ]},
   about:{ title:'틱톡커머스의 실행 지식을 연결합니다', eyebrow:'ABOUT', description:'틱톡커머스랩은 정보 미디어, 셀러 교육, 브랜드 컨설팅, 라이브·숏폼·광고 대행을 연결하는 독립 플랫폼입니다.', cta:'틱톡커머스랩과 시작하기', schema:'Organization', sections:[{title:'우리가 하는 일',items:['틱톡커머스 전문 정보 미디어','라이브 셀러 교육 아카데미','브랜드·제조사 틱톡샵 진출 컨설팅','라이브커머스·숏폼·광고 통합 대행']},{title:'성장 퍼널',items:['콘텐츠로 고객의 질문에 답합니다.','무료 PDF와 특강으로 실전 정보를 제공합니다.','교육·컨설팅·대행으로 실행을 돕습니다.','라이브 판매와 재구매 운영으로 성장합니다.']} ]},

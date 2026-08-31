@@ -118,7 +118,7 @@ export const shoppingComparison = [
 export const participantModels = [
   { title: '브랜드·제조사', items: ['상품 공급', '자체 콘텐츠', '라이브 방송', '크리에이터 협업', '브랜드 성장'], cta: '브랜드 진출 상담', href: '/contact/brand?service=틱톡샵+준비' },
   { title: '온라인 셀러', items: ['상품 등록', '판매 페이지 운영', '숏폼·라이브 판매', '어필리에이트 연계', '주문·CS 관리'], cta: '셀러 준비 진단', href: '#readiness-check' },
-  { title: '크리에이터', items: ['상품 콘텐츠 제작', '라이브 판매', '어필리에이트 수익', '브랜드 협업', '전문 카테고리 구축'], cta: '크리에이터 교육 관심 등록', href: '/free-class#free-class-form' },
+  { title: '크리에이터', items: ['상품 콘텐츠 제작', '라이브 판매', '어필리에이트 수익', '브랜드 협업', '전문 카테고리 구축'], cta: '크리에이터 교육 관심 등록', href: '/seller-academy' },
   { title: '대행사·마케터', items: ['콘텐츠 운영', '광고', '셀러 지원', '라이브 운영', '브랜드 컨설팅'], cta: '파트너십 문의', href: '/contact/brand?service=파트너십' },
 ];
 

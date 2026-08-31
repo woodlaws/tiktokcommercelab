@@ -4,11 +4,12 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { AlertCircle, Send } from 'lucide-react';
 
-type Kind='seminar'|'brand'|'seller';
+type Kind='seminar'|'brand'|'seller'|'academy';
 const configs:Record<Kind,{title:string;description:string;fields:{name:string;label:string;type?:string;required?:boolean;placeholder?:string}[]}>= {
   seminar:{title:'무료특강 신청',description:'한국 틱톡샵과 라이브커머스를 준비하는 핵심 내용을 안내합니다.',fields:[{name:'name',label:'이름',required:true},{name:'phone',label:'전화번호',type:'tel',required:true},{name:'email',label:'이메일',type:'email',required:true},{name:'activity',label:'현재 활동',placeholder:'브랜드 운영, 크리에이터, 예비 셀러 등'},{name:'interest',label:'관심 분야',placeholder:'틱톡샵, 라이브, 숏폼, 광고 등'}]},
   brand:{title:'브랜드 상담',description:'상품과 현재 상황을 알려주시면 적합한 실행 범위를 함께 정리합니다.',fields:[{name:'company',label:'회사명',required:true},{name:'name',label:'담당자',required:true},{name:'phone',label:'전화번호',type:'tel',required:true},{name:'email',label:'이메일',type:'email',required:true},{name:'product',label:'상품명',required:true},{name:'category',label:'상품 카테고리'},{name:'sales',label:'현재 월 매출 구간'},{name:'service',label:'희망 서비스'},{name:'message',label:'문의 내용',type:'textarea'}]},
   seller:{title:'라이브 셀러 등록',description:'활동 경험과 관심 분야를 남겨주시면 향후 교육·프로젝트 안내에 활용할 수 있도록 준비합니다.',fields:[{name:'name',label:'이름',required:true},{name:'phone',label:'연락처',type:'tel',required:true},{name:'email',label:'이메일',type:'email',required:true},{name:'channel',label:'활동 채널'},{name:'live',label:'라이브 경험'},{name:'sales',label:'판매 경험'},{name:'category',label:'관심 카테고리'},{name:'intro',label:'자기소개',type:'textarea'}]},
+  academy:{title:'셀러 아카데미 사전등록',description:'현재 수준과 교육 목표를 남겨주시면 과정 정보가 확정된 뒤 안내할 수 있도록 준비합니다.',fields:[{name:'name',label:'이름',required:true},{name:'phone',label:'연락처',type:'tel',required:true},{name:'email',label:'이메일',type:'email',required:true},{name:'activity',label:'현재 활동',placeholder:'브랜드, 셀러, 크리에이터, 마케터 등'},{name:'product',label:'보유 상품 또는 관심 카테고리'},{name:'experience',label:'틱톡·숏폼·라이브 경험'},{name:'goal',label:'교육에서 해결하고 싶은 목표',type:'textarea'},{name:'service',label:'관심 과정'}]},
 };
 
 export function LeadForm({kind}:{kind:Kind}){

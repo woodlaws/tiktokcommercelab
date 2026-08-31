@@ -5,7 +5,7 @@ import { experts, metrics, posts, services, site } from '@/lib/site-data';
 
 const audiences=[
   {icon:Tag,title:'브랜드·제조사',text:'제품을 숏폼과 라이브를 통해 판매하고 싶은 기업',label:'브랜드 성장 알아보기',href:'/brand-growth',color:'#fe2c55'},
-  {icon:UserRound,title:'예비 라이브 셀러',text:'라이브 방송으로 새로운 수익을 만들고 싶은 사람',label:'셀러 아카데미 알아보기',href:'/academy',color:'#25f4ee'},
+  {icon:UserRound,title:'예비 라이브 셀러',text:'라이브 방송으로 새로운 수익을 만들고 싶은 사람',label:'셀러 아카데미 알아보기',href:'/seller-academy',color:'#25f4ee'},
   {icon:Building2,title:'기업·기관',text:'틱톡커머스 교육·컨설팅·프로젝트가 필요한 조직',label:'기업교육 문의',href:'/contact/brand',color:'#8b5cf6'},
 ];
 const funnel=[{icon:Video,title:'콘텐츠',text:'숏폼·라이브 예고'},{icon:UserRound,title:'리드',text:'관심 유입·팔로우'},{icon:Radio,title:'라이브',text:'신뢰·소통·전환'},{icon:ShoppingBag,title:'판매',text:'구매 경험 최적화'},{icon:RotateCcw,title:'재구매',text:'CRM·충성도 관리'}];
