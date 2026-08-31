@@ -52,23 +52,28 @@
 }
 
 ::selection { background:rgba(37,244,238,.3); color:#fff; }
+/* Shared typography roles keep marketing, editorial, section, and panel headings distinct. */
 .hero-grid { background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px); background-size:54px 54px; mask-image:linear-gradient(to bottom,black,transparent 92%); }
-.hero-title { max-width:760px; font-size:34px; line-height:1.08; letter-spacing:-.045em; font-weight:900; word-break:keep-all; overflow-wrap:normal; }
+.hero-title { max-width:760px; font-size:34px; line-height:1.1; letter-spacing:-.045em; font-weight:900; word-break:keep-all; overflow-wrap:normal; }
 .hero-title>span { display:block; white-space:nowrap; }
 .hero-section { display:grid; min-height:calc(100svh - 112px); align-items:start; padding-top:40px; padding-bottom:40px; }
-@media (min-width:480px) { .hero-title { font-size:40px; } }
+@media (min-width:480px) { .hero-title { font-size:38px; } }
 @media (min-width:480px) and (max-width:767px) { .hero-section { padding-top:48px; padding-bottom:48px; } }
-@media (min-width:768px) { .hero-title { font-size:46px; } .hero-section { padding-top:56px; padding-bottom:56px; } }
-@media (min-width:1024px) { .hero-title { font-size:54px; } .hero-section { padding-top:64px; padding-bottom:64px; } }
-@media (min-width:1280px) { .hero-title { font-size:64px; } .hero-section { padding-top:72px; padding-bottom:72px; } }
-@media (min-width:1440px) { .hero-title { font-size:72px; } .hero-section { padding-top:80px; padding-bottom:80px; } }
+@media (min-width:768px) { .hero-title { font-size:44px; } .hero-section { padding-top:56px; padding-bottom:56px; } }
+@media (min-width:1024px) { .hero-title { font-size:48px; } .hero-section { padding-top:64px; padding-bottom:64px; } }
+@media (min-width:1280px) { .hero-title { font-size:54px; } .hero-section { padding-top:72px; padding-bottom:72px; } }
+@media (min-width:1440px) { .hero-title { font-size:58px; } .hero-section { padding-top:80px; padding-bottom:80px; } }
+.page-title { max-width:820px; font-size:clamp(2.25rem,3.6vw,3.25rem); line-height:1.12; letter-spacing:-.042em; font-weight:900; word-break:keep-all; overflow-wrap:normal; }
+.article-title { font-size:clamp(2.125rem,3.4vw,3rem); line-height:1.17; letter-spacing:-.04em; font-weight:900; word-break:keep-all; overflow-wrap:normal; }
+.cta-title { font-size:clamp(1.5rem,2.2vw,2rem); line-height:1.24; letter-spacing:-.035em; font-weight:900; word-break:keep-all; overflow-wrap:normal; }
+.panel-title { font-size:clamp(1.625rem,2vw,2rem); line-height:1.24; letter-spacing:-.035em; font-weight:900; word-break:keep-all; overflow-wrap:normal; }
 .cta-primary,.cta-secondary { display:inline-flex; min-height:52px; align-items:center; justify-content:center; gap:.65rem; border-radius:.65rem; padding:0 1.45rem; font-size:.92rem; font-weight:800; transition:.2s ease; }
 .cta-primary { background:#fe174f; color:#fff; box-shadow:0 0 32px rgba(254,23,79,.2); }
 .cta-primary:hover { transform:translateY(-2px); background:#ff3767; }
 .cta-secondary { border:1px solid rgba(37,244,238,.55); background:rgba(37,244,238,.025); color:#fff; }
 .cta-secondary:hover { transform:translateY(-2px); background:rgba(37,244,238,.09); }
 .section-heading>p { font-size:.72rem; font-weight:900; letter-spacing:.16em; color:#25f4ee; }
-.section-heading>h2 { margin-top:.75rem; font-size:clamp(2rem,4vw,3.4rem); line-height:1.16; letter-spacing:-.045em; font-weight:900; }
+.section-heading>h2 { margin-top:.75rem; max-width:56rem; font-size:clamp(1.75rem,2.6vw,2.25rem); line-height:1.24; letter-spacing:-.04em; font-weight:900; word-break:keep-all; overflow-wrap:normal; }
 .card-premium { border:1px solid rgba(255,255,255,.1); border-radius:1rem; background:linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.02)); padding:1.75rem; transition:.2s ease; }
 .card-premium:hover { transform:translateY(-3px); border-color:rgba(255,255,255,.22); }
 @media (prefers-reduced-motion:reduce) { html{scroll-behavior:auto} *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important} }

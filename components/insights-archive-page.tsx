@@ -1,8 +1,92 @@
-import Link from 'next/link';
-import { ArrowLeft, ArrowRight, BookOpen, Clock } from 'lucide-react';
-import { SiteShell } from '@/components/site-shell';
-import type { InsightPost } from '@/lib/insights-data';
+import Link from "next/link";
+import { ArrowLeft, ArrowRight, BookOpen, Clock } from "lucide-react";
+import { SiteShell } from "@/components/site-shell";
+import type { InsightPost } from "@/lib/insights-data";
 
-export function InsightsArchivePage({ eyebrow, title, description, posts }: { eyebrow: string; title: string; description: string; posts: InsightPost[] }) {
-  return <SiteShell><section className="relative isolate overflow-hidden border-b border-white/8"><div className="hero-grid absolute inset-0 -z-20" aria-hidden="true" /><div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_78%_30%,rgba(37,244,238,.12),transparent_28%),radial-gradient(circle_at_68%_88%,rgba(254,44,85,.14),transparent_34%)]" aria-hidden="true" /><div className="mx-auto max-w-[1200px] px-5 py-16 lg:px-10 lg:py-20"><Link href="/insights" className="inline-flex min-h-11 items-center gap-2 text-sm font-bold text-white/45 hover:text-white"><ArrowLeft className="size-4" aria-hidden="true" /> 커머스 인사이트</Link><p className="mt-8 text-xs font-black tracking-[.16em] text-[#25f4ee]">{eyebrow}</p><h1 className="mt-4 max-w-4xl text-[clamp(2.5rem,5vw,4.5rem)] font-black leading-[1.08] tracking-[-.045em]">{title}</h1><p className="mt-6 max-w-2xl break-keep text-lg leading-8 text-white/52">{description}</p><p className="mt-5 text-sm font-bold text-white/34">공개 콘텐츠 {posts.length}개</p></div></section><section className="mx-auto max-w-[1200px] px-5 py-20 lg:px-10">{posts.length ? <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">{posts.map((post) => <article key={post.slug} className="group rounded-2xl border border-white/10 bg-white/[.03] p-6 transition hover:-translate-y-1 hover:border-[#25f4ee]/30"><div className="flex items-center justify-between"><span className="grid size-10 place-items-center rounded-xl bg-[#25f4ee]/8 text-[#25f4ee]"><BookOpen className="size-5" aria-hidden="true" /></span><span className="flex items-center gap-1 text-xs text-white/32"><Clock className="size-3" aria-hidden="true" />{post.readTime}</span></div><h2 className="mt-5 text-xl font-black leading-snug group-hover:text-[#25f4ee]"><Link href={`/insights/${post.slug}`}>{post.title}</Link></h2><p className="mt-3 line-clamp-3 text-sm leading-6 text-white/46">{post.summary}</p><div className="mt-4 flex flex-wrap gap-2">{post.tags.map((tag) => <Link key={tag.slug} href={`/insights/tag/${tag.slug}`} className="text-[11px] font-bold text-white/32 hover:text-white">#{tag.name}</Link>)}</div><Link href={`/insights/${post.slug}`} className="mt-6 inline-flex min-h-11 items-center gap-2 text-sm font-bold">읽어보기 <ArrowRight className="size-4" aria-hidden="true" /></Link></article>)}</div> : <div className="rounded-2xl border border-dashed border-white/12 p-12 text-center"><h2 className="font-black">아직 공개된 콘텐츠가 없습니다</h2><p className="mt-2 text-sm text-white/38">검토가 완료된 콘텐츠부터 순차적으로 공개합니다.</p></div>}</section></SiteShell>;
+export function InsightsArchivePage({
+  eyebrow,
+  title,
+  description,
+  posts,
+}: {
+  eyebrow: string;
+  title: string;
+  description: string;
+  posts: InsightPost[];
+}) {
+  return (
+    <SiteShell>
+      <section className="relative isolate overflow-hidden border-b border-white/8">
+        <div className="hero-grid absolute inset-0 -z-20" aria-hidden="true" />
+        <div
+          className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_78%_30%,rgba(37,244,238,.12),transparent_28%),radial-gradient(circle_at_68%_88%,rgba(254,44,85,.14),transparent_34%)]"
+          aria-hidden="true"
+        />
+        <div className="mx-auto max-w-[1200px] px-5 py-16 lg:px-10 lg:py-20">
+          <Link
+            href="/insights"
+            className="inline-flex min-h-11 items-center gap-2 text-sm font-bold text-white/45 hover:text-white"
+          >
+            <ArrowLeft className="size-4" aria-hidden="true" /> 커머스 인사이트
+          </Link>
+          <p className="mt-8 text-xs font-black tracking-[.16em] text-[#25f4ee]">{eyebrow}</p>
+          <h1 className="page-title mt-4 max-w-4xl">
+            {title}
+          </h1>
+          <p className="mt-6 max-w-2xl break-keep text-lg leading-8 text-white/52">{description}</p>
+          <p className="mt-5 text-sm font-bold text-white/34">공개 콘텐츠 {posts.length}개</p>
+        </div>
+      </section>
+      <section className="mx-auto max-w-[1200px] px-5 py-20 lg:px-10">
+        {posts.length ? (
+          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {posts.map((post) => (
+              <article
+                key={post.slug}
+                className="group rounded-2xl border border-white/10 bg-white/[.03] p-6 transition hover:-translate-y-1 hover:border-[#25f4ee]/30"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="grid size-10 place-items-center rounded-xl bg-[#25f4ee]/8 text-[#25f4ee]">
+                    <BookOpen className="size-5" aria-hidden="true" />
+                  </span>
+                  <span className="flex items-center gap-1 text-xs text-white/32">
+                    <Clock className="size-3" aria-hidden="true" />
+                    {post.readTime}
+                  </span>
+                </div>
+                <h2 className="mt-5 text-xl font-black leading-snug group-hover:text-[#25f4ee]">
+                  <Link href={`/insights/${post.slug}`}>{post.title}</Link>
+                </h2>
+                <p className="mt-3 line-clamp-3 text-sm leading-6 text-white/46">{post.summary}</p>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {post.tags.map((tag) => (
+                    <Link
+                      key={tag.slug}
+                      href={`/insights/tag/${tag.slug}`}
+                      className="text-[11px] font-bold text-white/32 hover:text-white"
+                    >
+                      #{tag.name}
+                    </Link>
+                  ))}
+                </div>
+                <Link
+                  href={`/insights/${post.slug}`}
+                  className="mt-6 inline-flex min-h-11 items-center gap-2 text-sm font-bold"
+                >
+                  읽어보기 <ArrowRight className="size-4" aria-hidden="true" />
+                </Link>
+              </article>
+            ))}
+          </div>
+        ) : (
+          <div className="rounded-2xl border border-dashed border-white/12 p-12 text-center">
+            <h2 className="font-black">아직 공개된 콘텐츠가 없습니다</h2>
+            <p className="mt-2 text-sm text-white/38">
+              검토가 완료된 콘텐츠부터 순차적으로 공개합니다.
+            </p>
+          </div>
+        )}
+      </section>
+    </SiteShell>
+  );
 }

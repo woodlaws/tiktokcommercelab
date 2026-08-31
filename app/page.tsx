@@ -1,32 +1,400 @@
-import Link from 'next/link';
-import { ArrowRight, BarChart3, Building2, CalendarDays, GraduationCap, Megaphone, Radio, RotateCcw, ShoppingBag, Sparkles, Tag, UserRound, Video } from 'lucide-react';
-import { SiteShell } from '@/components/site-shell';
-import { experts, metrics, posts, services, site } from '@/lib/site-data';
+import Link from "next/link";
+import {
+  ArrowRight,
+  BarChart3,
+  Building2,
+  CalendarDays,
+  GraduationCap,
+  Megaphone,
+  Radio,
+  RotateCcw,
+  ShoppingBag,
+  Sparkles,
+  Tag,
+  UserRound,
+  Video,
+} from "lucide-react";
+import { SiteShell } from "@/components/site-shell";
+import { experts, metrics, posts, services, site } from "@/lib/site-data";
 
-const audiences=[
-  {icon:Tag,title:'브랜드·제조사',text:'제품을 숏폼과 라이브를 통해 판매하고 싶은 기업',label:'브랜드 성장 알아보기',href:'/brand-growth',color:'#fe2c55'},
-  {icon:UserRound,title:'예비 라이브 셀러',text:'라이브 방송으로 새로운 수익을 만들고 싶은 사람',label:'셀러 아카데미 알아보기',href:'/seller-academy',color:'#25f4ee'},
-  {icon:Building2,title:'기업·기관',text:'틱톡커머스 교육·컨설팅·프로젝트가 필요한 조직',label:'기업교육 문의',href:'/contact?type=corporate-training',color:'#8b5cf6'},
+const audiences = [
+  {
+    icon: Tag,
+    title: "브랜드·제조사",
+    text: "제품을 숏폼과 라이브를 통해 판매하고 싶은 기업",
+    label: "브랜드 성장 알아보기",
+    href: "/brand-growth",
+    color: "#fe2c55",
+  },
+  {
+    icon: UserRound,
+    title: "예비 라이브 셀러",
+    text: "라이브 방송으로 새로운 수익을 만들고 싶은 사람",
+    label: "셀러 아카데미 알아보기",
+    href: "/seller-academy",
+    color: "#25f4ee",
+  },
+  {
+    icon: Building2,
+    title: "기업·기관",
+    text: "틱톡커머스 교육·컨설팅·프로젝트가 필요한 조직",
+    label: "기업교육 문의",
+    href: "/contact?type=corporate-training",
+    color: "#8b5cf6",
+  },
 ];
-const funnel=[{icon:Video,title:'콘텐츠',text:'숏폼·라이브 예고'},{icon:UserRound,title:'리드',text:'관심 유입·팔로우'},{icon:Radio,title:'라이브',text:'신뢰·소통·전환'},{icon:ShoppingBag,title:'판매',text:'구매 경험 최적화'},{icon:RotateCcw,title:'재구매',text:'CRM·충성도 관리'}];
+const funnel = [
+  { icon: Video, title: "콘텐츠", text: "숏폼·라이브 예고" },
+  { icon: UserRound, title: "리드", text: "관심 유입·팔로우" },
+  { icon: Radio, title: "라이브", text: "신뢰·소통·전환" },
+  { icon: ShoppingBag, title: "판매", text: "구매 경험 최적화" },
+  { icon: RotateCcw, title: "재구매", text: "CRM·충성도 관리" },
+];
 
-export default function Home(){const latest=posts.slice(0,6);const jsonLd={'@context':'https://schema.org','@graph':[{'@type':'Organization',name:site.name,url:site.url,description:site.description},{'@type':'WebSite',name:site.name,url:site.url,inLanguage:'ko-KR'}]};return <SiteShell><script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(jsonLd)}}/>
-  <section className="relative isolate overflow-hidden border-b border-white/8"><div className="hero-grid absolute inset-0 -z-20"/><div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_78%_35%,rgba(0,232,232,.11),transparent_28%),radial-gradient(circle_at_76%_70%,rgba(255,0,74,.14),transparent_30%)]"/><div className="hero-section mx-auto max-w-[1440px] gap-10 px-5 lg:grid-cols-[minmax(0,46fr)_minmax(0,54fr)] lg:gap-12 lg:px-10 xl:gap-16"><div className="min-w-0"><p className="mb-8 inline-flex items-center gap-2 rounded-full border border-[#25f4ee]/30 bg-[#25f4ee]/6 px-3 py-1.5 text-xs font-bold tracking-[.12em] text-[#5ffbf7]"><Radio className="size-3.5"/> LIVE COMMERCE SYSTEM</p><h1 className="hero-title"><span>월 10억의</span><span>라이브 경험을</span><span>커머스 시스템으로</span></h1><div className="mt-6 h-1.5 w-56 rounded-full bg-gradient-to-r from-[#25f4ee] via-white to-[#fe2c55]"/><p className="mt-8 max-w-[620px] break-keep text-lg font-medium leading-[1.6] text-white/68 sm:text-xl">틱톡샵 · 라이브 · 숏폼 · 광고 · 셀러 육성의 모든 것</p><p className="mt-4 max-w-[620px] break-keep text-sm leading-7 text-white/46 sm:text-base">월 매출 10억원 수준의 현직 라이브커머스 경험과 마케팅·AI·교육 시스템을 결합한 독립 전문 플랫폼입니다.</p><div className="mt-7 flex flex-wrap gap-3"><Link href="/free-class" className="cta-primary">무료특강 신청<ArrowRight className="size-4"/></Link><Link href="/contact/brand" className="cta-secondary">브랜드 상담<ArrowRight className="size-4"/></Link></div></div>
-  <div className="relative mx-auto w-full min-w-0 max-w-[700px]" aria-label="라이브커머스 운영 화면 예시"><div className="absolute -inset-8 -z-10 rounded-full bg-[#fe2c55]/8 blur-3xl"/><div className="overflow-hidden rounded-[28px] border border-white/12 bg-[#101216]/90 p-4 shadow-2xl"><div className="relative min-h-[400px] overflow-hidden rounded-[20px] border border-white/8 bg-[linear-gradient(135deg,#191d24,#090a0c_58%,#151018)] p-5"><div className="flex items-center justify-between"><span className="rounded bg-[#fe2c55] px-2 py-1 text-[11px] font-black">LIVE</span><span className="rounded-full bg-black/55 px-3 py-1 text-xs text-white/70">● 8.7K 시청 중</span></div><div className="absolute bottom-5 left-5 right-[42%] space-y-2">{['상품 구성이 정말 좋아요','라이브 혜택 확인했어요','다음 방송도 기대됩니다'].map((text,i)=><div key={text} className="rounded-full bg-black/48 px-3 py-2 text-[11px] text-white/70" style={{opacity:1-i*.18}}>{text}</div>)}</div><div className="absolute bottom-5 right-5 top-16 flex w-[36%] flex-col items-center justify-center rounded-2xl border border-dashed border-white/20 bg-white/[.035] text-center"><Radio className="mb-3 size-9 text-[#25f4ee]"/><strong className="text-sm">라이브 셀러 이미지</strong><span className="mt-1 text-[11px] text-white/38">실제 사진 교체 영역</span></div></div></div><div className="absolute -right-2 top-12 w-52 rounded-2xl border border-[#25f4ee]/28 bg-[#101419]/94 p-4 shadow-xl sm:-right-4 lg:-right-8"><p className="text-[11px] text-white/45">실시간 매출</p><p className="mt-1 text-lg font-black">₩ 128,560,000</p><svg viewBox="0 0 180 52" className="mt-3 w-full" aria-hidden="true"><path d="M2 45 25 32 44 37 64 22 85 29 104 11 126 24 146 7 178 16" fill="none" stroke="#fe2c55" strokeWidth="3"/></svg></div><div className="absolute -bottom-5 -left-2 rounded-2xl border border-white/12 bg-[#101216]/95 p-4 shadow-xl sm:-left-4 lg:-left-8"><div className="flex items-center gap-3"><span className="grid size-10 place-items-center rounded-xl bg-[#fe2c55]/15 text-[#fe2c55]"><ShoppingBag className="size-5"/></span><span><small className="block text-white/42">새로운 주문</small><strong className="text-sm">라이브 주문 발생</strong></span></div></div></div></div></section>
+export default function Home() {
+  const latest = posts.slice(0, 6);
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      { "@type": "Organization", name: site.name, url: site.url, description: site.description },
+      { "@type": "WebSite", name: site.name, url: site.url, inLanguage: "ko-KR" },
+    ],
+  };
+  return (
+    <SiteShell>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <section className="relative isolate overflow-hidden border-b border-white/8">
+        <div className="hero-grid absolute inset-0 -z-20" />
+        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_78%_35%,rgba(0,232,232,.11),transparent_28%),radial-gradient(circle_at_76%_70%,rgba(255,0,74,.14),transparent_30%)]" />
+        <div className="hero-section mx-auto max-w-[1440px] gap-10 px-5 lg:grid-cols-[minmax(0,46fr)_minmax(0,54fr)] lg:gap-12 lg:px-10 xl:gap-16">
+          <div className="min-w-0">
+            <p className="mb-8 inline-flex items-center gap-2 rounded-full border border-[#25f4ee]/30 bg-[#25f4ee]/6 px-3 py-1.5 text-xs font-bold tracking-[.12em] text-[#5ffbf7]">
+              <Radio className="size-3.5" /> LIVE COMMERCE SYSTEM
+            </p>
+            <h1 className="hero-title">
+              <span>월 10억의</span>
+              <span>라이브 경험을</span>
+              <span>커머스 시스템으로</span>
+            </h1>
+            <div className="mt-6 h-1.5 w-56 rounded-full bg-gradient-to-r from-[#25f4ee] via-white to-[#fe2c55]" />
+            <p className="mt-8 max-w-[620px] break-keep text-lg font-medium leading-[1.6] text-white/68 sm:text-xl">
+              틱톡샵 · 라이브 · 숏폼 · 광고 · 셀러 육성의 모든 것
+            </p>
+            <p className="mt-4 max-w-[620px] break-keep text-sm leading-7 text-white/46 sm:text-base">
+              월 매출 10억원 수준의 현직 라이브커머스 경험과 마케팅·AI·교육 시스템을 결합한 독립
+              전문 플랫폼입니다.
+            </p>
+            <div className="mt-7 flex flex-wrap gap-3">
+              <Link href="/free-class" className="cta-primary">
+                무료특강 신청
+                <ArrowRight className="size-4" />
+              </Link>
+              <Link href="/contact/brand" className="cta-secondary">
+                브랜드 상담
+                <ArrowRight className="size-4" />
+              </Link>
+            </div>
+          </div>
+          <div
+            className="relative mx-auto w-full min-w-0 max-w-[700px]"
+            aria-label="라이브커머스 운영 화면 예시"
+          >
+            <div className="absolute -inset-8 -z-10 rounded-full bg-[#fe2c55]/8 blur-3xl" />
+            <div className="overflow-hidden rounded-[28px] border border-white/12 bg-[#101216]/90 p-4 shadow-2xl">
+              <div className="relative min-h-[400px] overflow-hidden rounded-[20px] border border-white/8 bg-[linear-gradient(135deg,#191d24,#090a0c_58%,#151018)] p-5">
+                <div className="flex items-center justify-between">
+                  <span className="rounded bg-[#fe2c55] px-2 py-1 text-[11px] font-black">
+                    LIVE
+                  </span>
+                  <span className="rounded-full bg-black/55 px-3 py-1 text-xs text-white/70">
+                    ● 8.7K 시청 중
+                  </span>
+                </div>
+                <div className="absolute bottom-5 left-5 right-[42%] space-y-2">
+                  {[
+                    "상품 구성이 정말 좋아요",
+                    "라이브 혜택 확인했어요",
+                    "다음 방송도 기대됩니다",
+                  ].map((text, i) => (
+                    <div
+                      key={text}
+                      className="rounded-full bg-black/48 px-3 py-2 text-[11px] text-white/70"
+                      style={{ opacity: 1 - i * 0.18 }}
+                    >
+                      {text}
+                    </div>
+                  ))}
+                </div>
+                <div className="absolute bottom-5 right-5 top-16 flex w-[36%] flex-col items-center justify-center rounded-2xl border border-dashed border-white/20 bg-white/[.035] text-center">
+                  <Radio className="mb-3 size-9 text-[#25f4ee]" />
+                  <strong className="text-sm">라이브 셀러 이미지</strong>
+                  <span className="mt-1 text-[11px] text-white/38">실제 사진 교체 영역</span>
+                </div>
+              </div>
+            </div>
+            <div className="absolute -right-2 top-12 w-52 rounded-2xl border border-[#25f4ee]/28 bg-[#101419]/94 p-4 shadow-xl sm:-right-4 lg:-right-8">
+              <p className="text-[11px] text-white/45">실시간 매출</p>
+              <p className="mt-1 text-lg font-black">₩ 128,560,000</p>
+              <svg viewBox="0 0 180 52" className="mt-3 w-full" aria-hidden="true">
+                <path
+                  d="M2 45 25 32 44 37 64 22 85 29 104 11 126 24 146 7 178 16"
+                  fill="none"
+                  stroke="#fe2c55"
+                  strokeWidth="3"
+                />
+              </svg>
+            </div>
+            <div className="absolute -bottom-5 -left-2 rounded-2xl border border-white/12 bg-[#101216]/95 p-4 shadow-xl sm:-left-4 lg:-left-8">
+              <div className="flex items-center gap-3">
+                <span className="grid size-10 place-items-center rounded-xl bg-[#fe2c55]/15 text-[#fe2c55]">
+                  <ShoppingBag className="size-5" />
+                </span>
+                <span>
+                  <small className="block text-white/42">새로운 주문</small>
+                  <strong className="text-sm">라이브 주문 발생</strong>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-  <section className="mx-auto max-w-[1440px] px-5 py-6 lg:px-10"><div className="grid overflow-hidden rounded-2xl border border-white/10 bg-white/[.035] md:grid-cols-3">{metrics.map((item,i)=>{const Icon=[BarChart3,CalendarDays,Radio][i];return <div key={item.value} className={`flex items-center gap-4 p-6 ${i?'border-t border-white/10 md:border-l md:border-t-0':''}`}><span className="grid size-12 shrink-0 place-items-center rounded-full border border-[#25f4ee]/35 bg-[#25f4ee]/6 text-[#25f4ee]"><Icon className="size-5"/></span><span><strong className="block text-lg">{item.value}</strong><small className="mt-1 block text-white/46">{item.detail}</small></span></div>})}</div></section>
+      <section className="mx-auto max-w-[1440px] px-5 py-6 lg:px-10">
+        <div className="grid overflow-hidden rounded-2xl border border-white/10 bg-white/[.035] md:grid-cols-3">
+          {metrics.map((item, i) => {
+            const Icon = [BarChart3, CalendarDays, Radio][i];
+            return (
+              <div
+                key={item.value}
+                className={`flex items-center gap-4 p-6 ${i ? "border-t border-white/10 md:border-l md:border-t-0" : ""}`}
+              >
+                <span className="grid size-12 shrink-0 place-items-center rounded-full border border-[#25f4ee]/35 bg-[#25f4ee]/6 text-[#25f4ee]">
+                  <Icon className="size-5" />
+                </span>
+                <span>
+                  <strong className="block text-lg">{item.value}</strong>
+                  <small className="mt-1 block text-white/46">{item.detail}</small>
+                </span>
+              </div>
+            );
+          })}
+        </div>
+      </section>
 
-  <section className="mx-auto max-w-[1440px] px-5 py-20 lg:px-10"><div className="section-heading"><p>START HERE</p><h2>어떤 틱톡커머스 기회를<br/>찾고 계십니까?</h2></div><div className="mt-10 grid gap-5 lg:grid-cols-3">{audiences.map(({icon:Icon,...item})=><article key={item.title} className="card-premium"><span className="grid size-14 place-items-center rounded-full" style={{background:`${item.color}18`,color:item.color}}><Icon className="size-6"/></span><h3 className="mt-6 text-2xl font-black">{item.title}</h3><p className="mt-3 min-h-12 text-sm leading-6 text-white/52">{item.text}</p><Link href={item.href} className="mt-6 inline-flex items-center gap-2 text-sm font-bold" style={{color:item.color}}>{item.label}<ArrowRight className="size-4"/></Link></article>)}</div></section>
+      <section className="mx-auto max-w-[1440px] px-5 py-20 lg:px-10">
+        <div className="section-heading">
+          <p>START HERE</p>
+          <h2>
+            어떤 틱톡커머스 기회를
+            <br />
+            찾고 계십니까?
+          </h2>
+        </div>
+        <div className="mt-10 grid gap-5 lg:grid-cols-3">
+          {audiences.map(({ icon: Icon, ...item }) => (
+            <article key={item.title} className="card-premium">
+              <span
+                className="grid size-14 place-items-center rounded-full"
+                style={{ background: `${item.color}18`, color: item.color }}
+              >
+                <Icon className="size-6" />
+              </span>
+              <h3 className="mt-6 text-2xl font-black">{item.title}</h3>
+              <p className="mt-3 min-h-12 text-sm leading-6 text-white/52">{item.text}</p>
+              <Link
+                href={item.href}
+                className="mt-6 inline-flex items-center gap-2 text-sm font-bold"
+                style={{ color: item.color }}
+              >
+                {item.label}
+                <ArrowRight className="size-4" />
+              </Link>
+            </article>
+          ))}
+        </div>
+      </section>
 
-  <section className="border-y border-white/8 bg-[#090a0d]"><div className="mx-auto max-w-[1440px] px-5 py-20 lg:px-10"><div className="flex items-end justify-between gap-6"><div className="section-heading"><p>INSIGHTS</p><h2>틱톡커머스 인사이트</h2></div><Link href="/insights" className="hidden items-center gap-2 text-sm font-bold text-white/60 sm:flex">전체 보기<ArrowRight className="size-4"/></Link></div><div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">{latest.map(post=><Link key={post.slug} href={`/insights/${post.slug}`} className="group rounded-2xl border border-white/10 bg-white/[.025] p-6 transition hover:-translate-y-1 hover:border-[#25f4ee]/28"><div className="flex items-center justify-between"><span className="text-xs font-bold text-[#25f4ee]">{post.category}</span><span className="text-xs text-white/28">{post.date}</span></div><h3 className="mt-4 text-xl font-black leading-snug group-hover:text-[#83fffb]">{post.title}</h3><p className="mt-3 line-clamp-2 text-sm leading-6 text-white/45">{post.summary}</p><span className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-white/65">읽어보기<ArrowRight className="size-4"/></span></Link>)}</div></div></section>
+      <section className="border-y border-white/8 bg-[#090a0d]">
+        <div className="mx-auto max-w-[1440px] px-5 py-20 lg:px-10">
+          <div className="flex items-end justify-between gap-6">
+            <div className="section-heading">
+              <p>INSIGHTS</p>
+              <h2>틱톡커머스 인사이트</h2>
+            </div>
+            <Link
+              href="/insights"
+              className="hidden items-center gap-2 text-sm font-bold text-white/60 sm:flex"
+            >
+              전체 보기
+              <ArrowRight className="size-4" />
+            </Link>
+          </div>
+          <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+            {latest.map((post) => (
+              <Link
+                key={post.slug}
+                href={`/insights/${post.slug}`}
+                className="group rounded-2xl border border-white/10 bg-white/[.025] p-6 transition hover:-translate-y-1 hover:border-[#25f4ee]/28"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-bold text-[#25f4ee]">{post.category}</span>
+                  <span className="text-xs text-white/28">{post.date}</span>
+                </div>
+                <h3 className="mt-4 text-xl font-black leading-snug group-hover:text-[#83fffb]">
+                  {post.title}
+                </h3>
+                <p className="mt-3 line-clamp-2 text-sm leading-6 text-white/45">{post.summary}</p>
+                <span className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-white/65">
+                  읽어보기
+                  <ArrowRight className="size-4" />
+                </span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
 
-  <section className="mx-auto max-w-[1440px] px-5 py-20 lg:px-10"><div className="section-heading"><p>SERVICES</p><h2>성장을 연결하는 네 가지 서비스</h2></div><div className="mt-10 grid gap-4 md:grid-cols-2">{services.map((service,i)=>{const Icon=[Building2,Radio,Megaphone,GraduationCap][i];return <Link key={service.title} href={service.href} className="group flex gap-5 rounded-2xl border border-white/10 bg-white/[.03] p-6 transition hover:border-[#fe2c55]/32"><span className="grid size-12 shrink-0 place-items-center rounded-xl bg-[#fe2c55]/10 text-[#fe2c55]"><Icon className="size-5"/></span><span><strong className="text-lg">{service.title}</strong><p className="mt-2 text-sm leading-6 text-white/45">{service.text}</p><span className="mt-3 inline-flex items-center gap-2 text-sm font-bold text-white/60">자세히 보기<ArrowRight className="size-4"/></span></span></Link>})}</div></section>
+      <section className="mx-auto max-w-[1440px] px-5 py-20 lg:px-10">
+        <div className="section-heading">
+          <p>SERVICES</p>
+          <h2>성장을 연결하는 네 가지 서비스</h2>
+        </div>
+        <div className="mt-10 grid gap-4 md:grid-cols-2">
+          {services.map((service, i) => {
+            const Icon = [Building2, Radio, Megaphone, GraduationCap][i];
+            return (
+              <Link
+                key={service.title}
+                href={service.href}
+                className="group flex gap-5 rounded-2xl border border-white/10 bg-white/[.03] p-6 transition hover:border-[#fe2c55]/32"
+              >
+                <span className="grid size-12 shrink-0 place-items-center rounded-xl bg-[#fe2c55]/10 text-[#fe2c55]">
+                  <Icon className="size-5" />
+                </span>
+                <span>
+                  <strong className="text-lg">{service.title}</strong>
+                  <p className="mt-2 text-sm leading-6 text-white/45">{service.text}</p>
+                  <span className="mt-3 inline-flex items-center gap-2 text-sm font-bold text-white/60">
+                    자세히 보기
+                    <ArrowRight className="size-4" />
+                  </span>
+                </span>
+              </Link>
+            );
+          })}
+        </div>
+      </section>
 
-  <section className="mx-auto max-w-[1440px] px-5 pb-20 lg:px-10"><div className="rounded-3xl border border-white/10 bg-[#101216] p-6 sm:p-10"><div className="section-heading"><p>GROWTH FUNNEL</p><h2>콘텐츠부터 재구매까지</h2></div><div className="mt-10 grid gap-3 md:grid-cols-5">{funnel.map(({icon:Icon,...item},i)=><div key={item.title} className="relative rounded-2xl border border-white/8 bg-black/20 p-5 text-center"><span className={`mx-auto grid size-12 place-items-center rounded-full ${i===4?'bg-[#7c5cff]/16 text-[#9d89ff]':i%2?'bg-[#25f4ee]/9 text-[#25f4ee]':'bg-[#fe2c55]/10 text-[#fe2c55]'}`}><Icon className="size-5"/></span><strong className="mt-4 block">{item.title}</strong><span className="mt-1 block text-xs text-white/38">{item.text}</span>{i<4&&<ArrowRight className="absolute -right-3 top-1/2 z-10 hidden size-5 text-white/25 md:block"/>}</div>)}</div></div></section>
+      <section className="mx-auto max-w-[1440px] px-5 pb-20 lg:px-10">
+        <div className="rounded-3xl border border-white/10 bg-[#101216] p-6 sm:p-10">
+          <div className="section-heading">
+            <p>GROWTH FUNNEL</p>
+            <h2>콘텐츠부터 재구매까지</h2>
+          </div>
+          <div className="mt-10 grid gap-3 md:grid-cols-5">
+            {funnel.map(({ icon: Icon, ...item }, i) => (
+              <div
+                key={item.title}
+                className="relative rounded-2xl border border-white/8 bg-black/20 p-5 text-center"
+              >
+                <span
+                  className={`mx-auto grid size-12 place-items-center rounded-full ${i === 4 ? "bg-[#7c5cff]/16 text-[#9d89ff]" : i % 2 ? "bg-[#25f4ee]/9 text-[#25f4ee]" : "bg-[#fe2c55]/10 text-[#fe2c55]"}`}
+                >
+                  <Icon className="size-5" />
+                </span>
+                <strong className="mt-4 block">{item.title}</strong>
+                <span className="mt-1 block text-xs text-white/38">{item.text}</span>
+                {i < 4 && (
+                  <ArrowRight className="absolute -right-3 top-1/2 z-10 hidden size-5 text-white/25 md:block" />
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-  <section className="border-y border-white/8 bg-[#090a0d]"><div className="mx-auto max-w-[1200px] px-5 py-20 lg:px-10"><div className="section-heading text-center"><p>EXPERTS</p><h2>현장과 시스템을 연결하는 전문가</h2></div><div className="mt-10 grid gap-5 md:grid-cols-2">{experts.map((expert,i)=><article key={expert.name} className="grid gap-6 rounded-2xl border border-white/10 bg-white/[.03] p-6 sm:grid-cols-[140px_1fr]"><div className="grid min-h-40 place-items-center rounded-xl border border-dashed border-white/16 bg-black/25 text-center"><UserRound className={`size-10 ${i?'text-[#25f4ee]':'text-[#fe2c55]'}`}/><span className="sr-only">인물 사진 교체 영역</span></div><div><h3 className="text-2xl font-black">{expert.name}</h3><p className="mt-2 font-bold text-white/72">{expert.role}</p><p className="mt-4 text-sm leading-6 text-white/44">{expert.bio}</p><Link href="/experts" className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-[#25f4ee]">자세히 보기<ArrowRight className="size-4"/></Link></div></article>)}</div></div></section>
+      <section className="border-y border-white/8 bg-[#090a0d]">
+        <div className="mx-auto max-w-[1200px] px-5 py-20 lg:px-10">
+          <div className="section-heading text-center">
+            <p>EXPERTS</p>
+            <h2>현장과 시스템을 연결하는 전문가</h2>
+          </div>
+          <div className="mt-10 grid gap-5 md:grid-cols-2">
+            {experts.map((expert, i) => (
+              <article
+                key={expert.name}
+                className="grid gap-6 rounded-2xl border border-white/10 bg-white/[.03] p-6 sm:grid-cols-[140px_1fr]"
+              >
+                <div className="grid min-h-40 place-items-center rounded-xl border border-dashed border-white/16 bg-black/25 text-center">
+                  <UserRound className={`size-10 ${i ? "text-[#25f4ee]" : "text-[#fe2c55]"}`} />
+                  <span className="sr-only">인물 사진 교체 영역</span>
+                </div>
+                <div>
+                  <h3 className="text-2xl font-black">{expert.name}</h3>
+                  <p className="mt-2 font-bold text-white/72">{expert.role}</p>
+                  <p className="mt-4 text-sm leading-6 text-white/44">{expert.bio}</p>
+                  <Link
+                    href="/experts"
+                    className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-[#25f4ee]"
+                  >
+                    자세히 보기
+                    <ArrowRight className="size-4" />
+                  </Link>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
 
-  <section className="mx-auto max-w-[1200px] px-5 py-20 lg:px-10"><div className="grid gap-8 rounded-3xl border border-[#25f4ee]/22 bg-[linear-gradient(120deg,rgba(37,244,238,.08),rgba(124,92,255,.08))] p-7 lg:grid-cols-[1fr_auto] lg:items-center lg:p-12"><div><Sparkles className="size-8 text-[#25f4ee]"/><h2 className="mt-5 text-3xl font-black tracking-[-.035em]">한국 틱톡샵 시장을 먼저 준비하세요</h2><p className="mt-4 max-w-2xl text-sm leading-7 text-white/50">공식 현황과 미확정 정책을 구분하고, 상품·콘텐츠·라이브·운영 준비사항을 한 페이지에서 확인하세요.</p></div><div className="flex flex-wrap gap-3"><Link href="/tiktok-shop-korea" className="cta-primary">틱톡샵 한국 가이드<ArrowRight className="size-4"/></Link><Link href="/free-class" className="cta-secondary">무료특강 신청</Link></div></div></section>
+      <section className="mx-auto max-w-[1200px] px-5 py-20 lg:px-10">
+        <div className="grid gap-8 rounded-3xl border border-[#25f4ee]/22 bg-[linear-gradient(120deg,rgba(37,244,238,.08),rgba(124,92,255,.08))] p-7 lg:grid-cols-[1fr_auto] lg:items-center lg:p-12">
+          <div>
+            <Sparkles className="size-8 text-[#25f4ee]" />
+            <h2 className="panel-title mt-5">
+              한국 틱톡샵 시장을 먼저 준비하세요
+            </h2>
+            <p className="mt-4 max-w-2xl text-sm leading-7 text-white/50">
+              공식 현황과 미확정 정책을 구분하고, 상품·콘텐츠·라이브·운영 준비사항을 한 페이지에서
+              확인하세요.
+            </p>
+          </div>
+          <div className="flex flex-wrap gap-3">
+            <Link href="/tiktok-shop-korea" className="cta-primary">
+              틱톡샵 한국 가이드
+              <ArrowRight className="size-4" />
+            </Link>
+            <Link href="/free-class" className="cta-secondary">
+              무료특강 신청
+            </Link>
+          </div>
+        </div>
+      </section>
 
-  <section className="mx-auto max-w-[1440px] px-5 pb-20 lg:px-10"><div className="rounded-3xl border border-[#fe2c55]/40 bg-[radial-gradient(circle_at_15%_50%,rgba(37,244,238,.13),transparent_28%),radial-gradient(circle_at_85%_45%,rgba(254,44,85,.2),transparent_34%),#0b0c0f] p-8 text-center sm:p-14"><h2 className="text-3xl font-black tracking-[-.04em] sm:text-5xl">틱톡커머스의 다음 기회를 선점하세요</h2><p className="mx-auto mt-5 max-w-2xl text-white/50">가장 빠르게 배우고, 가장 현실적으로 실행할 수 있는 다음 단계를 함께 찾습니다.</p><div className="mt-8 flex flex-wrap justify-center gap-3"><Link href="/free-class" className="cta-primary">무료특강 신청</Link><Link href="/contact/brand" className="cta-secondary">브랜드 상담</Link><Link href="/contact/seller" className="cta-secondary">셀러 등록</Link></div></div></section>
-  </SiteShell>}
+      <section className="mx-auto max-w-[1440px] px-5 pb-20 lg:px-10">
+        <div className="rounded-3xl border border-[#fe2c55]/40 bg-[radial-gradient(circle_at_15%_50%,rgba(37,244,238,.13),transparent_28%),radial-gradient(circle_at_85%_45%,rgba(254,44,85,.2),transparent_34%),#0b0c0f] p-8 text-center sm:p-14">
+          <h2 className="cta-title">
+            틱톡커머스의 다음 기회를 선점하세요
+          </h2>
+          <p className="mx-auto mt-5 max-w-2xl text-white/50">
+            가장 빠르게 배우고, 가장 현실적으로 실행할 수 있는 다음 단계를 함께 찾습니다.
+          </p>
+          <div className="mt-8 flex flex-wrap justify-center gap-3">
+            <Link href="/free-class" className="cta-primary">
+              무료특강 신청
+            </Link>
+            <Link href="/contact/brand" className="cta-secondary">
+              브랜드 상담
+            </Link>
+            <Link href="/contact/seller" className="cta-secondary">
+              셀러 등록
+            </Link>
+          </div>
+        </div>
+      </section>
+    </SiteShell>
+  );
+}

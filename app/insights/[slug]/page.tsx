@@ -1,44 +1,312 @@
-import type { Metadata } from 'next';
-import Link from 'next/link';
-import { notFound } from 'next/navigation';
-import { ArrowLeft, ArrowRight, CheckCircle2, Clock, RefreshCw, Tag } from 'lucide-react';
-import { ShareButton } from '@/components/share-button';
-import { SiteShell } from '@/components/site-shell';
-import { getInsightPost, publishedInsightPosts } from '@/lib/insights-data';
-import { site } from '@/lib/site-data';
+import type { Metadata } from "next";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { ArrowLeft, ArrowRight, CheckCircle2, Clock, RefreshCw, Tag } from "lucide-react";
+import { ShareButton } from "@/components/share-button";
+import { SiteShell } from "@/components/site-shell";
+import { getInsightPost, publishedInsightPosts } from "@/lib/insights-data";
+import { site } from "@/lib/site-data";
 
-const sectionTitles = ['먼저 확인할 핵심 기준', '실행을 위한 준비', '운영과 개선에 반영하는 방법'];
+const sectionTitles = ["먼저 확인할 핵심 기준", "실행을 위한 준비", "운영과 개선에 반영하는 방법"];
 
-export function generateStaticParams() { return publishedInsightPosts.map((post) => ({ slug: post.slug })); }
+export function generateStaticParams() {
+  return publishedInsightPosts.map((post) => ({ slug: post.slug }));
+}
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
-  const { slug } = await params; const post = getInsightPost(slug); if (!post) return {};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const post = getInsightPost(slug);
+  if (!post) return {};
   const canonical = `${site.url}/insights/${slug}`;
-  return { title: { absolute: `${post.title} | ${site.name}` }, description: post.summary, keywords: post.tags.map((tag) => tag.name), alternates: { canonical }, openGraph: { title: post.title, description: post.summary, type: 'article', url: canonical, publishedTime: post.publishedAt, modifiedTime: post.updatedAt, authors: [site.name], section: post.category.name, tags: post.tags.map((tag) => tag.name), images: [] }, twitter: { card: 'summary', title: post.title, description: post.summary, images: [] } };
+  return {
+    title: { absolute: `${post.title} | ${site.name}` },
+    description: post.summary,
+    keywords: post.tags.map((tag) => tag.name),
+    alternates: { canonical },
+    openGraph: {
+      title: post.title,
+      description: post.summary,
+      type: "article",
+      url: canonical,
+      publishedTime: post.publishedAt,
+      modifiedTime: post.updatedAt,
+      authors: [site.name],
+      section: post.category.name,
+      tags: post.tags.map((tag) => tag.name),
+      images: [],
+    },
+    twitter: { card: "summary", title: post.title, description: post.summary, images: [] },
+  };
 }
 
 export default async function InsightDetailPage({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params; const index = publishedInsightPosts.findIndex((post) => post.slug === slug); const post = publishedInsightPosts[index]; if (!post) notFound();
-  const related = publishedInsightPosts.filter((candidate) => candidate.slug !== post.slug && (candidate.category.slug === post.category.slug || candidate.tags.some((tag) => post.tags.some((currentTag) => currentTag.slug === tag.slug)))).slice(0, 3);
+  const { slug } = await params;
+  const index = publishedInsightPosts.findIndex((post) => post.slug === slug);
+  const post = publishedInsightPosts[index];
+  if (!post) notFound();
+  const related = publishedInsightPosts
+    .filter(
+      (candidate) =>
+        candidate.slug !== post.slug &&
+        (candidate.category.slug === post.category.slug ||
+          candidate.tags.some((tag) =>
+            post.tags.some((currentTag) => currentTag.slug === tag.slug),
+          )),
+    )
+    .slice(0, 3);
   const previous = index > 0 ? publishedInsightPosts[index - 1] : undefined;
-  const next = index < publishedInsightPosts.length - 1 ? publishedInsightPosts[index + 1] : undefined;
+  const next =
+    index < publishedInsightPosts.length - 1 ? publishedInsightPosts[index + 1] : undefined;
   const canonical = `${site.url}/insights/${slug}`;
-  const articleSchema = { '@context': 'https://schema.org', '@type': 'Article', headline: post.title, description: post.summary, datePublished: post.publishedAt, dateModified: post.updatedAt, articleSection: post.category.name, keywords: post.tags.map((tag) => tag.name).join(', '), inLanguage: 'ko-KR', author: { '@type': 'Organization', name: post.author, url: site.url }, publisher: { '@type': 'Organization', name: site.name, url: site.url }, mainEntityOfPage: canonical };
-  const breadcrumbSchema = { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: '홈', item: site.url }, { '@type': 'ListItem', position: 2, name: '커머스 인사이트', item: `${site.url}/insights` }, { '@type': 'ListItem', position: 3, name: post.category.name, item: `${site.url}/insights/category/${post.category.slug}` }, { '@type': 'ListItem', position: 4, name: post.title, item: canonical }] };
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: post.title,
+    description: post.summary,
+    datePublished: post.publishedAt,
+    dateModified: post.updatedAt,
+    articleSection: post.category.name,
+    keywords: post.tags.map((tag) => tag.name).join(", "),
+    inLanguage: "ko-KR",
+    author: { "@type": "Organization", name: post.author, url: site.url },
+    publisher: { "@type": "Organization", name: site.name, url: site.url },
+    mainEntityOfPage: canonical,
+  };
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "홈", item: site.url },
+      { "@type": "ListItem", position: 2, name: "커머스 인사이트", item: `${site.url}/insights` },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: post.category.name,
+        item: `${site.url}/insights/category/${post.category.slug}`,
+      },
+      { "@type": "ListItem", position: 4, name: post.title, item: canonical },
+    ],
+  };
 
-  return <SiteShell>
-    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(articleSchema) }} />
-    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }} />
-    <article>
-      <header className="relative isolate overflow-hidden border-b border-white/8"><div className="hero-grid absolute inset-0 -z-20" aria-hidden="true" /><div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_75%_30%,rgba(37,244,238,.1),transparent_30%),radial-gradient(circle_at_30%_95%,rgba(254,44,85,.11),transparent_30%)]" aria-hidden="true" /><div className="mx-auto max-w-[940px] px-5 py-14 lg:px-10 lg:py-20"><nav aria-label="현재 위치" className="flex flex-wrap items-center gap-2 text-sm text-white/40"><Link href="/insights" className="inline-flex min-h-11 items-center gap-2 hover:text-white"><ArrowLeft className="size-4" aria-hidden="true" /> 인사이트</Link><span>/</span><Link href={`/insights/category/${post.category.slug}`} className="min-h-11 content-center hover:text-white">{post.category.name}</Link></nav><h1 className="mt-8 text-[clamp(2.35rem,5vw,4rem)] font-black leading-[1.13] tracking-[-.045em]">{post.title}</h1><p className="mt-6 max-w-3xl break-keep text-lg leading-8 text-white/56">{post.summary}</p><div className="mt-7 flex flex-wrap items-center gap-4 text-sm text-white/36"><span>{post.author}</span><time dateTime={post.publishedAt}>발행 {post.publishedAt}</time>{post.updatedAt !== post.publishedAt ? <span className="flex items-center gap-1"><RefreshCw className="size-3.5" aria-hidden="true" />수정 {post.updatedAt}</span> : null}<span className="flex items-center gap-1"><Clock className="size-3.5" aria-hidden="true" />{post.readTime}</span><ShareButton title={post.title} /></div><div className="mt-5 flex flex-wrap gap-2">{post.tags.map((tag) => <Link key={tag.slug} href={`/insights/tag/${tag.slug}`} className="rounded-full border border-white/10 px-3 py-2 text-xs font-bold text-white/45 hover:border-[#25f4ee]/35 hover:text-[#25f4ee]">#{tag.name}</Link>)}</div></div></header>
+  return (
+    <SiteShell>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(articleSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbSchema) }}
+      />
+      <article>
+        <header className="relative isolate overflow-hidden border-b border-white/8">
+          <div className="hero-grid absolute inset-0 -z-20" aria-hidden="true" />
+          <div
+            className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_75%_30%,rgba(37,244,238,.1),transparent_30%),radial-gradient(circle_at_30%_95%,rgba(254,44,85,.11),transparent_30%)]"
+            aria-hidden="true"
+          />
+          <div className="mx-auto max-w-[940px] px-5 py-14 lg:px-10 lg:py-20">
+            <nav
+              aria-label="현재 위치"
+              className="flex flex-wrap items-center gap-2 text-sm text-white/40"
+            >
+              <Link
+                href="/insights"
+                className="inline-flex min-h-11 items-center gap-2 hover:text-white"
+              >
+                <ArrowLeft className="size-4" aria-hidden="true" /> 인사이트
+              </Link>
+              <span>/</span>
+              <Link
+                href={`/insights/category/${post.category.slug}`}
+                className="min-h-11 content-center hover:text-white"
+              >
+                {post.category.name}
+              </Link>
+            </nav>
+            <h1 className="article-title mt-8">
+              {post.title}
+            </h1>
+            <p className="mt-6 max-w-3xl break-keep text-lg leading-8 text-white/56">
+              {post.summary}
+            </p>
+            <div className="mt-7 flex flex-wrap items-center gap-4 text-sm text-white/36">
+              <span>{post.author}</span>
+              <time dateTime={post.publishedAt}>발행 {post.publishedAt}</time>
+              {post.updatedAt !== post.publishedAt ? (
+                <span className="flex items-center gap-1">
+                  <RefreshCw className="size-3.5" aria-hidden="true" />
+                  수정 {post.updatedAt}
+                </span>
+              ) : null}
+              <span className="flex items-center gap-1">
+                <Clock className="size-3.5" aria-hidden="true" />
+                {post.readTime}
+              </span>
+              <ShareButton title={post.title} />
+            </div>
+            <div className="mt-5 flex flex-wrap gap-2">
+              {post.tags.map((tag) => (
+                <Link
+                  key={tag.slug}
+                  href={`/insights/tag/${tag.slug}`}
+                  className="rounded-full border border-white/10 px-3 py-2 text-xs font-bold text-white/45 hover:border-[#25f4ee]/35 hover:text-[#25f4ee]"
+                >
+                  #{tag.name}
+                </Link>
+              ))}
+            </div>
+          </div>
+        </header>
 
-      <div className="mx-auto grid max-w-[1080px] gap-10 px-5 py-14 lg:grid-cols-[220px_minmax(0,1fr)] lg:px-10"><aside><nav className="sticky top-28 rounded-2xl border border-white/10 bg-white/[.03] p-5" aria-label="이 글의 목차"><strong className="text-sm">이 글의 목차</strong><ol className="mt-4 space-y-3 text-sm leading-6 text-white/44"><li><a href="#summary">핵심 요약</a></li>{post.body.map((_, bodyIndex) => <li key={bodyIndex}><a href={`#section-${bodyIndex + 1}`}>{bodyIndex + 1}. {sectionTitles[bodyIndex] ?? `핵심 내용 ${bodyIndex + 1}`}</a></li>)}<li><a href="#sources">출처·확인 안내</a></li></ol></nav></aside><div className="min-w-0"><section id="summary" className="scroll-mt-28 rounded-2xl border border-[#25f4ee]/22 bg-[#25f4ee]/6 p-6 sm:p-7"><h2 className="font-black text-[#88fffb]">핵심 요약</h2><ul className="mt-4 space-y-3">{post.takeaways.map((item) => <li key={item} className="flex gap-3 text-sm leading-6 text-white/68"><CheckCircle2 className="mt-1 size-4 shrink-0 text-[#25f4ee]" aria-hidden="true" />{item}</li>)}</ul></section>{post.body.map((text, bodyIndex) => <section key={text} id={`section-${bodyIndex + 1}`} className="scroll-mt-28 pt-12"><h2 className="text-2xl font-black tracking-[-.025em]">{bodyIndex + 1}. {sectionTitles[bodyIndex] ?? `핵심 내용 ${bodyIndex + 1}`}</h2><p className="mt-5 break-keep text-[17px] leading-8 text-white/67">{text}</p></section>)}<section id="sources" className="mt-12 scroll-mt-28 border-t border-white/10 pt-8"><h2 className="font-black">출처·확인 안내</h2>{post.sources.map((source) => <p key={source} className="mt-3 break-keep text-sm leading-6 text-white/43">{source}</p>)}</section><p className="mt-8 rounded-xl border border-white/8 bg-white/[.025] p-4 text-xs leading-6 text-white/35">콘텐츠는 발행일 기준으로 작성되며 플랫폼 정책과 기능은 변경될 수 있습니다. 중요한 의사결정 전에는 각 플랫폼의 최신 공식 안내를 다시 확인하세요.</p><nav className="mt-12 grid gap-3 sm:grid-cols-2" aria-label="이전 글과 다음 글">{previous ? <Link href={`/insights/${previous.slug}`} className="rounded-xl border border-white/10 p-4 text-sm text-white/55 hover:border-white/20">← 이전 글<strong className="mt-1 block text-white">{previous.title}</strong></Link> : <span />}{next ? <Link href={`/insights/${next.slug}`} className="rounded-xl border border-white/10 p-4 text-right text-sm text-white/55 hover:border-white/20">다음 글 →<strong className="mt-1 block text-white">{next.title}</strong></Link> : null}</nav></div></div>
-    </article>
+        <div className="mx-auto grid max-w-[1080px] gap-10 px-5 py-14 lg:grid-cols-[220px_minmax(0,1fr)] lg:px-10">
+          <aside>
+            <nav
+              className="sticky top-28 rounded-2xl border border-white/10 bg-white/[.03] p-5"
+              aria-label="이 글의 목차"
+            >
+              <strong className="text-sm">이 글의 목차</strong>
+              <ol className="mt-4 space-y-3 text-sm leading-6 text-white/44">
+                <li>
+                  <a href="#summary">핵심 요약</a>
+                </li>
+                {post.body.map((_, bodyIndex) => (
+                  <li key={bodyIndex}>
+                    <a href={`#section-${bodyIndex + 1}`}>
+                      {bodyIndex + 1}. {sectionTitles[bodyIndex] ?? `핵심 내용 ${bodyIndex + 1}`}
+                    </a>
+                  </li>
+                ))}
+                <li>
+                  <a href="#sources">출처·확인 안내</a>
+                </li>
+              </ol>
+            </nav>
+          </aside>
+          <div className="min-w-0">
+            <section
+              id="summary"
+              className="scroll-mt-28 rounded-2xl border border-[#25f4ee]/22 bg-[#25f4ee]/6 p-6 sm:p-7"
+            >
+              <h2 className="font-black text-[#88fffb]">핵심 요약</h2>
+              <ul className="mt-4 space-y-3">
+                {post.takeaways.map((item) => (
+                  <li key={item} className="flex gap-3 text-sm leading-6 text-white/68">
+                    <CheckCircle2
+                      className="mt-1 size-4 shrink-0 text-[#25f4ee]"
+                      aria-hidden="true"
+                    />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </section>
+            {post.body.map((text, bodyIndex) => (
+              <section key={text} id={`section-${bodyIndex + 1}`} className="scroll-mt-28 pt-12">
+                <h2 className="text-2xl font-black tracking-[-.025em]">
+                  {bodyIndex + 1}. {sectionTitles[bodyIndex] ?? `핵심 내용 ${bodyIndex + 1}`}
+                </h2>
+                <p className="mt-5 break-keep text-[17px] leading-8 text-white/67">{text}</p>
+              </section>
+            ))}
+            <section id="sources" className="mt-12 scroll-mt-28 border-t border-white/10 pt-8">
+              <h2 className="font-black">출처·확인 안내</h2>
+              {post.sources.map((source) => (
+                <p key={source} className="mt-3 break-keep text-sm leading-6 text-white/43">
+                  {source}
+                </p>
+              ))}
+            </section>
+            <p className="mt-8 rounded-xl border border-white/8 bg-white/[.025] p-4 text-xs leading-6 text-white/35">
+              콘텐츠는 발행일 기준으로 작성되며 플랫폼 정책과 기능은 변경될 수 있습니다. 중요한
+              의사결정 전에는 각 플랫폼의 최신 공식 안내를 다시 확인하세요.
+            </p>
+            <nav className="mt-12 grid gap-3 sm:grid-cols-2" aria-label="이전 글과 다음 글">
+              {previous ? (
+                <Link
+                  href={`/insights/${previous.slug}`}
+                  className="rounded-xl border border-white/10 p-4 text-sm text-white/55 hover:border-white/20"
+                >
+                  ← 이전 글<strong className="mt-1 block text-white">{previous.title}</strong>
+                </Link>
+              ) : (
+                <span />
+              )}
+              {next ? (
+                <Link
+                  href={`/insights/${next.slug}`}
+                  className="rounded-xl border border-white/10 p-4 text-right text-sm text-white/55 hover:border-white/20"
+                >
+                  다음 글 →<strong className="mt-1 block text-white">{next.title}</strong>
+                </Link>
+              ) : null}
+            </nav>
+          </div>
+        </div>
+      </article>
 
-    <section className="border-y border-white/8 bg-[#090a0d]"><div className="mx-auto max-w-[1080px] px-5 py-16 lg:px-10"><div className="rounded-3xl border border-[#fe2c55]/30 bg-[radial-gradient(circle_at_80%_20%,rgba(254,44,85,.14),transparent_35%),#101216] p-8 text-center sm:p-10"><h2 className="text-3xl font-black tracking-[-.04em]">읽는 것에서 실행으로 옮기세요</h2><p className="mx-auto mt-4 max-w-2xl break-keep text-sm leading-7 text-white/48">무료특강에서 구조를 이해하고, 셀러 아카데미 또는 브랜드 운영 상담으로 다음 단계를 연결할 수 있습니다.</p><div className="mt-7 flex flex-wrap justify-center gap-3"><Link href="/free-class" className="cta-primary">무료특강 신청</Link><Link href="/seller-academy" className="cta-secondary">셀러 아카데미</Link><Link href="/live-agency#consultation-form" className="cta-secondary">브랜드 운영 상담 <ArrowRight className="size-4" aria-hidden="true" /></Link></div></div></div></section>
+      <section className="border-y border-white/8 bg-[#090a0d]">
+        <div className="mx-auto max-w-[1080px] px-5 py-16 lg:px-10">
+          <div className="rounded-3xl border border-[#fe2c55]/30 bg-[radial-gradient(circle_at_80%_20%,rgba(254,44,85,.14),transparent_35%),#101216] p-8 text-center sm:p-10">
+            <h2 className="cta-title">읽는 것에서 실행으로 옮기세요</h2>
+            <p className="mx-auto mt-4 max-w-2xl break-keep text-sm leading-7 text-white/48">
+              무료특강에서 구조를 이해하고, 셀러 아카데미 또는 브랜드 운영 상담으로 다음 단계를
+              연결할 수 있습니다.
+            </p>
+            <div className="mt-7 flex flex-wrap justify-center gap-3">
+              <Link href="/free-class" className="cta-primary">
+                무료특강 신청
+              </Link>
+              <Link href="/seller-academy" className="cta-secondary">
+                셀러 아카데미
+              </Link>
+              <Link href="/live-agency#consultation-form" className="cta-secondary">
+                브랜드 운영 상담 <ArrowRight className="size-4" aria-hidden="true" />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
 
-    {related.length ? <section className="mx-auto max-w-[1080px] px-5 py-20 lg:px-10"><div className="flex items-center justify-between"><h2 className="text-2xl font-black">관련 글</h2><Link href={`/insights/category/${post.category.slug}`} className="text-sm font-bold text-[#25f4ee]">{post.category.name} 전체 보기</Link></div><div className="mt-6 grid gap-4 md:grid-cols-3">{related.map((item) => <Link key={item.slug} href={`/insights/${item.slug}`} className="group rounded-2xl border border-white/10 bg-white/[.03] p-5 hover:border-[#25f4ee]/30"><span className="flex items-center gap-1 text-xs text-[#25f4ee]"><Tag className="size-3" aria-hidden="true" />{item.category.name}</span><strong className="mt-3 block leading-snug group-hover:text-[#25f4ee]">{item.title}</strong><p className="mt-3 line-clamp-2 text-xs leading-5 text-white/38">{item.summary}</p></Link>)}</div></section> : null}
-  </SiteShell>;
+      {related.length ? (
+        <section className="mx-auto max-w-[1080px] px-5 py-20 lg:px-10">
+          <div className="flex items-center justify-between">
+            <h2 className="text-2xl font-black">관련 글</h2>
+            <Link
+              href={`/insights/category/${post.category.slug}`}
+              className="text-sm font-bold text-[#25f4ee]"
+            >
+              {post.category.name} 전체 보기
+            </Link>
+          </div>
+          <div className="mt-6 grid gap-4 md:grid-cols-3">
+            {related.map((item) => (
+              <Link
+                key={item.slug}
+                href={`/insights/${item.slug}`}
+                className="group rounded-2xl border border-white/10 bg-white/[.03] p-5 hover:border-[#25f4ee]/30"
+              >
+                <span className="flex items-center gap-1 text-xs text-[#25f4ee]">
+                  <Tag className="size-3" aria-hidden="true" />
+                  {item.category.name}
+                </span>
+                <strong className="mt-3 block leading-snug group-hover:text-[#25f4ee]">
+                  {item.title}
+                </strong>
+                <p className="mt-3 line-clamp-2 text-xs leading-5 text-white/38">{item.summary}</p>
+              </Link>
+            ))}
+          </div>
+        </section>
+      ) : null}
+    </SiteShell>
+  );
 }
 
-function serializeJsonLd(value: object) { return JSON.stringify(value).replace(/</g, '\\u003c'); }
+function serializeJsonLd(value: object) {
+  return JSON.stringify(value).replace(/</g, "\\u003c");
+}
