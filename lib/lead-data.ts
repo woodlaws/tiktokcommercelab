@@ -4,7 +4,7 @@ export type LeadType = (typeof leadTypes)[number];
 export type LeadCampaign = { source?: string; medium?: string; campaign?: string; content?: string; term?: string };
 export type LeadPayload = {
   type: LeadType; name: string; phone: string; email: string; organization?: string; role?: string;
-  product?: string; currentChannel?: string; monthlySales?: string; budget?: string; timeline?: string;
+  product?: string; websiteLink?: string; currentChannel?: string; desiredService?: string; monthlySales?: string; budget?: string; timeline?: string;
   goal: string; preferredContact?: string; privacyConsent: boolean; marketingConsent: boolean;
   sourcePath: string; referrer?: string; campaign: LeadCampaign; context?: Record<string, string | string[]>;
   websiteConfirmation?: string; startedAt: number;
@@ -44,6 +44,6 @@ export function validateLeadPayload(payload: Partial<LeadPayload>) {
   if (!payload.email?.trim() || payload.email.length > 254 || !emailPattern.test(payload.email.trim())) errors.email = '이메일 형식을 확인해 주세요.';
   if (!payload.goal?.trim() || payload.goal.trim().length < 10 || payload.goal.trim().length > 2000) errors.goal = '문의 내용은 10~2,000자로 입력해 주세요.';
   if (!payload.privacyConsent) errors.privacyConsent = '개인정보 수집·이용 동의가 필요합니다.';
-  for (const key of ['organization', 'role', 'product', 'currentChannel', 'preferredContact'] as const) if ((payload[key]?.length ?? 0) > 200) errors[key] = '200자 이내로 입력해 주세요.';
+  for (const key of ['organization', 'role', 'product', 'websiteLink', 'currentChannel', 'desiredService', 'preferredContact'] as const) if ((payload[key]?.length ?? 0) > 200) errors[key] = '200자 이내로 입력해 주세요.';
   return errors;
 }

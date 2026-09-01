@@ -65,7 +65,9 @@ export function UnifiedContactForm({
       organization: text(data, "organization") || undefined,
       role: text(data, "role") || undefined,
       product: text(data, "product") || undefined,
+      websiteLink: text(data, "websiteLink") || undefined,
       currentChannel: text(data, "currentChannel") || undefined,
+      desiredService: text(data, "desiredService") || undefined,
       monthlySales: text(data, "monthlySales") || undefined,
       budget: text(data, "budget") || undefined,
       timeline: text(data, "timeline") || undefined,
@@ -221,11 +223,29 @@ export function UnifiedContactForm({
             <Field id="product" label="상품·서비스">
               <input id="contact-product" name="product" className={fieldClass} />
             </Field>
+            <Field id="websiteLink" label="홈페이지 또는 판매 링크">
+              <input
+                id="contact-websiteLink"
+                name="websiteLink"
+                type="url"
+                inputMode="url"
+                placeholder="https://"
+                className={fieldClass}
+              />
+            </Field>
             <Field id="currentChannel" label="현재 판매·운영 채널">
               <input
                 id="contact-currentChannel"
                 name="currentChannel"
                 placeholder="자사몰, 오픈마켓, TikTok 등"
+                className={fieldClass}
+              />
+            </Field>
+            <Field id="desiredService" label="원하는 서비스">
+              <input
+                id="contact-desiredService"
+                name="desiredService"
+                placeholder="전략, 숏폼, 크리에이터, 라이브, 광고 등"
                 className={fieldClass}
               />
             </Field>
