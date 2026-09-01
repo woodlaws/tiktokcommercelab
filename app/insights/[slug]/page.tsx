@@ -37,9 +37,9 @@ export async function generateMetadata({
       authors: [site.name],
       section: post.category.name,
       tags: post.tags.map((tag) => tag.name),
-      images: [],
+      images: [{ url: "/og-tiktok-commerce-lab.png", width: 1200, height: 630, alt: "틱톡커머스랩 인사이트" }],
     },
-    twitter: { card: "summary", title: post.title, description: post.summary, images: [] },
+    twitter: { card: "summary_large_image", title: post.title, description: post.summary, images: ["/og-tiktok-commerce-lab.png"] },
   };
 }
 

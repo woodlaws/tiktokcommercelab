@@ -22,9 +22,9 @@ export const metadata: Metadata = {
     type: "website",
     locale: "ko_KR",
     siteName: site.name,
-    images: [{ url: "/og.png", width: 1200, height: 630, alt: "틱톡커머스 인사이트" }],
+    images: [{ url: "/og-commerce-insights.png", width: 1200, height: 630, alt: "틱톡커머스 최신 정보와 실전 전략" }],
   },
-  twitter: { card: "summary_large_image", title, description, images: ["/og.png"] },
+  twitter: { card: "summary_large_image", title, description, images: ["/og-commerce-insights.png"] },
 };
 
 export default function InsightsPage() {

@@ -64,9 +64,9 @@ export const metadata: Metadata = {
     url: canonical,
     locale: "ko_KR",
     siteName: site.name,
-    images: [{ url: "/og.png", width: 1200, height: 630, alt: "틱톡샵 한국 가이드" }],
+    images: [{ url: "/og-tiktok-shop-korea.png", width: 1200, height: 630, alt: "한국 틱톡샵 진출 가이드" }],
   },
-  twitter: { card: "summary_large_image", title, description, images: ["/og.png"] },
+  twitter: { card: "summary_large_image", title, description, images: ["/og-tiktok-shop-korea.png"] },
 };
 
 export default function TikTokShopKoreaPage() {

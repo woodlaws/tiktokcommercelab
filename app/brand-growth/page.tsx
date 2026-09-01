@@ -62,9 +62,9 @@ export const metadata: Metadata = {
     type: "website",
     locale: "ko_KR",
     siteName: site.name,
-    images: [{ url: "/og.png", width: 1200, height: 630, alt: "틱톡커머스랩 브랜드 성장 시스템" }],
+    images: [{ url: "/og-brand-growth.png", width: 1200, height: 630, alt: "발견되는 브랜드에서 판매되는 브랜드로" }],
   },
-  twitter: { card: "summary_large_image", title, description, images: ["/og.png"] },
+  twitter: { card: "summary_large_image", title, description, images: ["/og-brand-growth.png"] },
 };
 
 const growthIcons = [Search, Compass, Film, UsersRound, ShoppingBag, RefreshCw];

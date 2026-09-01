@@ -56,9 +56,9 @@ export const metadata: Metadata = {
     url: canonical,
     locale: "ko_KR",
     siteName: "틱톡커머스랩",
-    images: [{ url: "/og.png", width: 1200, height: 630, alt: "틱톡커머스랩 라이브 에이전시" }],
+    images: [{ url: "/og-live-agency.png", width: 1200, height: 630, alt: "라이브 한 번이 아닌 반복 판매 시스템" }],
   },
-  twitter: { card: "summary_large_image", title, description, images: ["/og.png"] },
+  twitter: { card: "summary_large_image", title, description, images: ["/og-live-agency.png"] },
 };
 
 export default function LiveAgencyPage() {

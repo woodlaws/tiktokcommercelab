@@ -63,9 +63,9 @@ export const metadata: Metadata = {
     url: canonical,
     locale: "ko_KR",
     siteName: site.name,
-    images: [{ url: "/og.png", width: 1200, height: 630, alt: "틱톡커머스랩 무료특강" }],
+    images: [{ url: "/og-free-class.png", width: 1200, height: 630, alt: "틱톡커머스 무료특강" }],
   },
-  twitter: { card: "summary_large_image", title, description, images: ["/og.png"] },
+  twitter: { card: "summary_large_image", title, description, images: ["/og-free-class.png"] },
 };
 
 export default function FreeClassPage() {

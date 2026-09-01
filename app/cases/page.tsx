@@ -41,9 +41,9 @@ export const metadata: Metadata = {
     url: canonical,
     locale: "ko_KR",
     siteName: site.name,
-    images: [{ url: "/og.png", width: 1200, height: 630, alt: "틱톡커머스랩 성공사례" }],
+    images: [{ url: "/og-cases.png", width: 1200, height: 630, alt: "틱톡커머스 실행과 성장 기록" }],
   },
-  twitter: { card: "summary_large_image", title, description, images: ["/og.png"] },
+  twitter: { card: "summary_large_image", title, description, images: ["/og-cases.png"] },
 };
 
 const operatingSteps = [

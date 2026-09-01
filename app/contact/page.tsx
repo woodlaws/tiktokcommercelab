@@ -20,9 +20,9 @@ export const metadata: Metadata = {
     type: "website",
     locale: "ko_KR",
     siteName: site.name,
-    images: [{ url: "/og.png", width: 1200, height: 630, alt: "틱톡커머스랩 통합 문의" }],
+    images: [{ url: "/og-tiktok-commerce-lab.png", width: 1200, height: 630, alt: "틱톡커머스랩 통합 문의" }],
   },
-  twitter: { card: "summary_large_image", title, description, images: ["/og.png"] },
+  twitter: { card: "summary_large_image", title, description, images: ["/og-tiktok-commerce-lab.png"] },
 };
 
 export default async function ContactPage({
