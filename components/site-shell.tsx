@@ -7,11 +7,11 @@ export function Header() {
     <>
       <div className="border-b border-white/7 bg-black px-4 py-2 text-center text-[10px] leading-4 text-white/42 sm:text-xs">{site.notice}</div>
       <header className="sticky top-0 z-50 border-b border-white/8 bg-[#050607]/88 backdrop-blur-xl">
-        <div className="mx-auto flex h-20 max-w-[1440px] items-center justify-between px-5 lg:px-10">
+        <div className="mx-auto flex h-20 max-w-[1600px] items-center justify-between gap-4 px-5 lg:px-8 2xl:px-10">
           <Logo />
-          <nav className="hidden items-center gap-7 text-sm font-semibold text-white/68 xl:flex" aria-label="주요 메뉴">{navigation.map(item=><Link key={item.href} href={item.href} className="transition hover:text-white">{item.label}</Link>)}</nav>
+          <nav className="hidden items-center gap-4 text-sm font-semibold text-white/68 xl:flex 2xl:gap-5" aria-label="주요 메뉴">{navigation.map(item=><Link key={item.href} href={item.href} className="whitespace-nowrap transition hover:text-white">{item.label}</Link>)}</nav>
           <div className="flex items-center gap-2">
-            <Link href="/free-class" className="hidden rounded-lg bg-[#fe174f] px-5 py-3 text-sm font-extrabold shadow-[0_0_30px_rgba(254,23,79,.2)] transition hover:bg-[#ff3767] sm:inline-flex">무료특강 신청</Link>
+            <Link href="/free-class" className="hidden whitespace-nowrap rounded-lg bg-[#fe174f] px-5 py-3 text-sm font-extrabold shadow-[0_0_30px_rgba(254,23,79,.2)] transition hover:bg-[#ff3767] sm:inline-flex">무료특강 신청</Link>
             <details className="group relative xl:hidden"><summary className="grid size-11 cursor-pointer list-none place-items-center rounded-lg border border-white/14 bg-white/5" aria-label="메뉴 열기"><Menu className="size-5"/></summary><nav className="absolute right-0 top-14 grid w-[min(82vw,330px)] gap-1 rounded-2xl border border-white/10 bg-[#0c0e12] p-3 shadow-2xl">{navigation.map(item=><Link key={item.href} href={item.href} className="rounded-lg px-4 py-3 text-sm font-bold hover:bg-white/7">{item.label}</Link>)}<Link href="/experts" className="rounded-lg px-4 py-3 text-sm font-bold hover:bg-white/7">전문가 소개</Link><Link href="/about" className="rounded-lg px-4 py-3 text-sm font-bold hover:bg-white/7">회사 소개</Link><Link href="/free-class" className="cta-primary mt-2">무료특강 신청 <ArrowRight className="size-4"/></Link></nav></details>
           </div>
         </div>

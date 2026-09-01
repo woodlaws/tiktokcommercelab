@@ -125,18 +125,16 @@ export default function LiveAgencyPage() {
             <p className="inline-flex min-h-8 items-center gap-2 rounded-full border border-[#25f4ee]/30 bg-[#25f4ee]/6 px-3 text-xs font-black tracking-[.12em] text-[#70fffb]">
               <Radio className="size-3.5" aria-hidden="true" /> TIKTOK LIVE COMMERCE AGENCY
             </p>
-            <h1 className="page-title mt-8 max-w-[780px]">
+            <h1 className="live-agency-title mt-8">
               <span className="block">라이브 한 번이 아니라</span>
-              <span className="block">
-                <span className="whitespace-nowrap">반복되는 판매</span>{" "}
-                <span className="whitespace-nowrap">시스템을 만듭니다</span>
-              </span>
+              <span className="block">반복되는 판매 시스템을</span>
+              <span className="block">만듭니다</span>
             </h1>
             <div
               className="mt-6 h-1.5 w-56 rounded-full bg-gradient-to-r from-[#25f4ee] via-white to-[#fe2c55]"
               aria-hidden="true"
             />
-            <p className="mt-8 max-w-[680px] break-keep text-lg leading-[1.65] text-white/62">
+            <p className="mt-8 max-w-[700px] break-keep text-base leading-[1.7] text-white/62">
               상품 분석부터 방송 기획, 쇼호스트·크리에이터 섭외, 사전 모객, 라이브 운영과 성과
               분석까지 하나의 매출 흐름으로 연결합니다.
             </p>
